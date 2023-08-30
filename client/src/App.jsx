@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
+import Home from './pages/Home'
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import Navbar from './components/Navbar';
+import BlogDetail from './components/BlogDetail'
+import CreateBlog from './components/CreateBlog';
+import Footer from './components/Footer';
+import UserBlog from './pages/UserBlog';
 function App() {
-  const [count, setCount] = useState(0)
-
+  const clientId = import.meta.env.REACT_APP_CLIENTID
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <GoogleOAuthProvider clientId={clientId}>
+      <div className="box-border min-h-screen bg-gray-100 shadow-inner ">
+        <BrowserRouter>
+          <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/blog/:id" element={<BlogDetail />} />
+              <Route path="/blog/user/:id" element={<UserBlog />} />
+              <Route path="/writeblog" element={<CreateBlog />} />
+            </Routes>
+            <Footer />
+        </BrowserRouter>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </GoogleOAuthProvider>
+  );
 }
 
 export default App
