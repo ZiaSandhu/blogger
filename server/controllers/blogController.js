@@ -2,7 +2,6 @@ const Joi = require('joi')
 const fs = require('fs') // built in file system module
 const Blog = require('../models/blog');
 const { BASE_URL } = require('../config/index');
-const Comment = require('../models/comment');
 const blogDto = require('../dto/blogDto')
 const blogDetailDto = require('../dto/blogDetailDto')
 const regex = /^data:image\/[^;]+/;
@@ -78,7 +77,10 @@ const getAllBlogs = async (req, res, next) => {
 
         let blogs = []
 
-        blog.forEach(item => blogs.push(new blogDto(item))  )
+        blog.forEach(item => {
+            let newblog = new blogDto(item)
+            blogs.push(newblog)
+        })  
 
         res.status(200).json({ msg: 'Get all blogs', blogs })
     } catch (error) {

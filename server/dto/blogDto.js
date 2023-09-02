@@ -9,3 +9,4 @@ class blogDto {
         this.tag = blog.tag
     }
 }
+module.exports = blogDto
