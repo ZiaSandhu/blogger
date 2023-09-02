@@ -4,6 +4,13 @@
         { "src": "/writeblog", "dest": "/" },
         { "src": "blog/:id", "dest": "/" },
         { "src": "/*", "dest": "/" }
-    ]
+    ],
+    "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/index.html"
+        }
+      ]
+    
   }
   
