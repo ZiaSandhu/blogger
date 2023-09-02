@@ -50,6 +50,10 @@ export default function CreateBlog() {
     let response;
     try {
       response = await createBlogApiCall(post);
+      
+      reset()
+      setThumbnail(null)
+      setContent(null)
     } catch (error) {
       response = error;
     }

@@ -3,7 +3,8 @@ const fs = require('fs') // built in file system module
 const Blog = require('../models/blog');
 const { BASE_URL } = require('../config/index');
 const Comment = require('../models/comment');
-
+const blogDto = require('../dto/blogDto')
+const blogDetailDto = require('../dto/blogDetailDto')
 const regex = /^data:image\/[^;]+/;
 
 
@@ -73,7 +74,12 @@ const getAllBlogs = async (req, res, next) => {
     try {
         let query = Blog.find({})
         query.sort({ 'publishedAt': -1 });
-        let blogs = await query.exec()
+        let blog = await query.exec()
+
+        let blogs = []
+
+        blog.forEach(item => blogs.push(new blogDto(item))  )
+
         res.status(200).json({ msg: 'Get all blogs', blogs })
     } catch (error) {
         return next(error)
@@ -83,8 +89,7 @@ const getBlogById = async (req, res, next) => {
     const blogId = req.params._id
     try {
         let blog = await Blog.findOne({ _id: blogId })
-        let comments = await Comment.find({blogId})
-        res.status(200).json({ msg: 'Get blog by Id', blog,comments })
+        res.status(200).json({ msg: 'Get blog by Id', blog: new blogDetailDto(blog) })
     } catch (error) {
         return next(error)
     }
