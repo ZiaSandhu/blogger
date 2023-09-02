@@ -10,6 +10,7 @@ import UserBlog from './pages/UserBlog';
 import ErrorPage from './components/ErrorPage';
 import GoToTopButton from './components/GoToTopButton';
 import GoToBottom from './components/GoToBottom';
+import UserProfile from './components/UserProfile';
 function App() {
 
   // useEffect(() => {
@@ -39,9 +40,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/signup" element={<SignUp />} /> */}
+          <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          {/* <Route path="/blog/user/:id" element={<UserBlog />} /> */}
+          <Route path="/blog/user/:id" element={<UserBlog />} />
           <Route path="/writeblog" element={<CreateBlog />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>

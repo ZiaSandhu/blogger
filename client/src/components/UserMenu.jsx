@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogoutButton } from "./Auth";
 import {  BellIcon } from "@heroicons/react/24/outline";
-
+import {NavLink} from 'react-router-dom'
 const User = () => {
 const [showUserMenu, setShowUserMenu] = useState(false)
 const {user, isAuthenticated} = useAuth0()
@@ -35,6 +35,9 @@ return (
 
           {showUserMenu && (
             <div className="absolute right-0 z-10 mt-2 w-auto origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <NavLink to="/userprofile">
+                User Profile
+              </NavLink>
               <LogoutButton />
             </div>
           )}
