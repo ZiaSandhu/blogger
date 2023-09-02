@@ -2,11 +2,10 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import JoditEditor from "jodit-react";
 import { useForm } from "react-hook-form";
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import DialogueBox from "./Dialog";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import {useNavigate} from 'react-router-dom'
 import { createBlogApiCall } from "../api/index";
 
 export default function CreateBlog() {
@@ -15,6 +14,8 @@ export default function CreateBlog() {
   const [content, setContent] = useState("");
   const [error, setError] = useState();
   const [thumbnail, setThumbnail] = useState(null);
+
+  const navigate = useNavigate()
 
   const config = {
     uploader: {
@@ -50,12 +51,16 @@ export default function CreateBlog() {
     let response;
     try {
       response = await createBlogApiCall(post);
+      if(response.status === 201){
+        reset()
+        setThumbnail(null)
+        setContent(null)
+        navigate('/')
+      }
       
-      reset()
-      setThumbnail(null)
-      setContent(null)
+      
     } catch (error) {
-      response = error;
+      // response = error;
     }
   };
 

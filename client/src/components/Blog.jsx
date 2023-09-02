@@ -1,10 +1,8 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-import thumbnail from '../assets/thumbnail1.png'
 
 const Blog = ({blog={}}) => {
-  // todo implement correct links now dummy
   return (
     <div className="bg-white p-2 h-auto mt-8 rounded shadow lg:flex sm:block items-center">
       {/* Image on the right */}
@@ -14,6 +12,7 @@ const Blog = ({blog={}}) => {
             src={blog.thumbnail}
             alt="Image"
             className="w-full h-auto rounded"
+            loading='lazy'
           />
         </NavLink>
       </div>

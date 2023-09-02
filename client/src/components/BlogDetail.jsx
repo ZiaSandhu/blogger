@@ -61,6 +61,7 @@ const BlogDetail = () => {
                   src={data.user.picture}
                   alt="User Avatar"
                   className="w-8 h-8 rounded-full mr-2"
+                  loading="lazy"
                 />
               </NavLink>
               <NavLink to="/blog/user/1" className="text-gray-600">
