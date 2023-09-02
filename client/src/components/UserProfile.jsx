@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const UserProfile = () => {
   const { user } = useAuth0();
+  console.log("🚀 ~ file: UserProfile.jsx:5 ~ UserProfile ~ user:", user)
 
   return (
     <div className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
