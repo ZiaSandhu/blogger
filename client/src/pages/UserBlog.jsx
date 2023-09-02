@@ -1,8 +1,8 @@
-import React from 'react'
-import UserProfileCard from '../components/UserCard'
-import Blog from '../components/Blog'
-
+import React, { useEffect } from "react";
+import UserProfileCard from "../components/UserCard";
+import Blog from "../components/Blog";
 const UserBlog = () => {
+  
   return (
     <>
       <UserProfileCard />
@@ -13,6 +13,6 @@ const UserBlog = () => {
       </div>
     </>
   );
-}
+};
 
-export default UserBlog
+export default UserBlog;

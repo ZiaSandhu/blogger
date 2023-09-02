@@ -1,78 +1,31 @@
-import React, { useState } from 'react';
-import {ChevronUpIcon, ChevronDownIcon} from '@heroicons/react/24/outline'
-const Comment = () => {
-  const [showReplies, setShowReplies] = useState(true);
-  const [arrowUp, setArrowUp] = useState(true);
+import React, { useEffect, useState } from 'react';
+import SingleComment from './SingleComment';
+import CommentForm from './CommentForm';
+import {  getCommentsApiCall } from "../api";
 
-  const toggleReplies = () => {
-    setShowReplies(!showReplies);
-    setArrowUp(prev => !prev);
+const Comment = ({blogId}) => {
+  const [data,setComment] = useState([])
+  const fetchData = async () => {
+    try {
+      const comments = await getCommentsApiCall(blogId)
+      setComment(comments.data.comments)
+    } catch (error) {
+    }
   };
+  useEffect(()=>{
+    fetchData();
+  },[])
 
   return (
-    <div className="p-5 bg-white  rounded-2xl border-2 border-stone-400 ">
-      <div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <p className="text-indigo-600">John Doe</p>
-            <p className="text-gray-400 ml-2">August 29, 2023</p>
-          </div>
-          <button className="h-4 w-4" onClick={toggleReplies}>
-            {arrowUp ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </button>
-        </div>
-        <p className="mt-2">
-          This is a great article! I learned so much from it. Looking forward to
-          more content like this.
-        </p>
-        <button className="mt-2 text-gray-500 inline-flex items-center">
-          View Replies
-        </button>
-        <span className="mx-4"></span>
-        <button className="mt-2 text-gray-500">Reply</button>
-      </div>
-      <div className=" border-l-4 text-gray-800 pl-4 mt-3 flex flex-col gap-4 ">
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <p className="text-indigo-600">John Doe</p>
-              <p className="text-gray-400 ml-2">August 29, 2023</p>
-            </div>
-            <button className="h-4 w-4" onClick={toggleReplies}>
-              {arrowUp ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-          </div>
-          <p className="mt-2">
-            This is a great article! I learned so much from it. Looking forward
-            to more content like this.
-          </p>
-          <button className="mt-2 text-gray-500 inline-flex items-center">
-            View Replies
-          </button>
-          <span className="mx-4"></span>
-          <button className="mt-2 text-gray-500">Reply</button>
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <p className="text-indigo-600">John Doe</p>
-              <p className="text-gray-400 ml-2">August 29, 2023</p>
-            </div>
-            <button className="h-4 w-4" onClick={toggleReplies}>
-              {arrowUp ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-          </div>
-          <p className="mt-2">
-            This is a great article! I learned so much from it. Looking forward
-            to more content like this.
-          </p>
-          <button className="mt-2 text-gray-500 inline-flex items-center">
-            View Replies
-          </button>
-          <span className="mx-4"></span>
-          <button className="mt-2 text-gray-500">Reply</button>
-        </div>
-      </div>
+    <div className='flex flex-col gap-6'>
+      <CommentForm fetchData={fetchData} blogId={blogId} />
+      {data.map((comment,index) => (<div
+        key={index}
+        className="p-5 bg-white  rounded-2xl border-2 border-stone-400 "
+      >
+        <SingleComment fetchData={fetchData} mainComment={comment._id} comment={comment} />
+      </div>)
+      )}
     </div>
   );
 };

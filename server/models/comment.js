@@ -1,30 +1,20 @@
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema({
-  content: {
-    type: String,
-    required: true,
+const replySchema = new mongoose.Schema({
+  content: {type:String},
+  user: Object,
+  replies: {
+    type: [this],
+    default: []
   },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the user who authored the comment
-    required: true,
-  },
-  blog: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Blog', // Reference to the blog post this comment belongs to
-    required: true,
-  },
-  parentComment: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment', // Reference to the parent comment, if this is a reply
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+}, { timestamps: true });
 
-const Comment = mongoose.model('Comment', commentSchema);
+const CommentSchema = new mongoose.Schema({
+  content: String,
+  user: Object,
+  blogId: { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' },
+  replies: { type: [replySchema], default: [] },
+}, { timestamps: true });
 
-module.exports = Comment;
+module.exports = mongoose.model('Comment', CommentSchema);
+

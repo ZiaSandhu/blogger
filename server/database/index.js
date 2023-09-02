@@ -6,7 +6,7 @@ async function dbConnect(uri) {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log(conn)
+        console.log(conn.connection.host)
     } catch (error) {
         console.log(error)
     }

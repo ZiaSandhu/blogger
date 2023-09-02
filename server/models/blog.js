@@ -9,24 +9,27 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the user who authored the blog
+  user: {
+    type: Object,
     required: true,
   },
-  tags: {
+  readTime: {
+    type: String,
+    required: true,
+  },
+  tag: {
     type: String,
   },
   publishedAt: {
     type: Date,
     default: Date.now,
   },
-  featuredImage: {
+  thumbnail: {
     type: String, // You could store the image URL or path here
   },
   isPublished:{
     type: Boolean,
-    default: false
+    default: true
   }
 });
 

@@ -1,21 +1,29 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import JoditEditor from 'jodit-react';
+import JoditEditor from "jodit-react";
 import { useForm } from "react-hook-form";
 import { useState, useRef, useCallback, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import DialogueBox from "./Dialog";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { createBlogApiCall } from "../api/index";
+
 export default function CreateBlog() {
   const editor = useRef(null);
-  const [content, setContent] = useState('');
+  const { user, isAuthenticated } = useAuth0();
+  const [content, setContent] = useState("");
+  const [error, setError] = useState();
+  const [thumbnail, setThumbnail] = useState(null);
+
   const config = {
     uploader: {
-      "insertImageAsBase64URI": true
+      insertImageAsBase64URI: true,
     },
     spellcheck: true,
     minHeight: 300,
-    readOnly: false
-  }
+    readOnly: false,
+  };
   // const [post, setPost] = useState()
   const {
     register,
@@ -23,19 +31,31 @@ export default function CreateBlog() {
     reset,
     formState: { errors },
   } = useForm();
-  const submit = (data) => {
-  const post = {
-    ...data,
-    thumbnail,
-    content,
-  };
-  // todo upload to database
-    // setOpenDialog(true)
+  const submit = async (data) => {
+    setError(null);
+    if (!isAuthenticated) {
+      setError("Login Required");
+      return;
+    }
+    if (!thumbnail || content === "") {
+      setError("Something is wrong. Check Data");
+      return;
+    }
+    const post = {
+      ...data,
+      user,
+      thumbnail,
+      content,
+    };
+    let response;
+    try {
+      response = await createBlogApiCall(post);
+    } catch (error) {
+      response = error;
+    }
   };
 
-  const [thumbnail, setThumbnail] = useState(null);
   const onDropThumbnail = useCallback((acceptedFiles) => {
-    console.log("Thumbnail files:", acceptedFiles[0]);
     const reader = new FileReader();
     reader.readAsDataURL(acceptedFiles[0]);
     reader.onloadend = () => {
@@ -107,7 +127,7 @@ export default function CreateBlog() {
               <div className="mt-2">
                 <input
                   id="readtime"
-                  {...register("readtime", {
+                  {...register("readTime", {
                     required: "Readtime is missing",
                     minValue: 1,
                   })}
@@ -176,18 +196,18 @@ export default function CreateBlog() {
               config={config}
               tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)}
-              onChange={(newContent) => {
-                console.log(newContent)
-              }}
+              // onChange={(newContent) => {
+              //   console.log(newContent);
+              // }}
             />
           </div>
           {/* <div>{content}</div> */}
         </div>
-
+        {error && <p className="my-2 text-red-500 text-center"> {error} </p>}
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="button"
-            onClick={()=>reset()}
+            onClick={() => reset()}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Cancel

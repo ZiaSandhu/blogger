@@ -1,38 +1,23 @@
-const User = require('../models/User')
-const JWTService = require('../services/jwtServices')
-const auth = async(req,res,next) => {
-    try {
-        const {refreshToken, accessToken} = req.cookies
-        
-        if(!refreshToken || !accessToken){
-            const error = {
-                status: 401,
-                message: 'Unauthorized'
-            }
-            return next(error);
-        }
-
-        let _id;
-
-    try{
-        _id = JWTService.verifyAccessToken(accessToken)._id;
-    }
-    catch(error){
-        return next(error);
-    }
-
-    let user;
-
-    try{
-        user = await User.findOne({_id: _id});
-    }
-    catch(error){
-        return next(error);
-    }
-    next()
-    } catch (error) {
-        return next(error)
-    }
-}
-
-module.exports = {auth}
+const { auth } = require('express-oauth2-jwt-bearer');
+// const jwt = require('express-jwt')
+// const jwks = require('jwks-rsa')
+// Authorization middleware. When used, the Access Token must
+// exist and be verified against the Auth0 JSON Web Key Set.
+const checkJwt = auth({
+    audience: 'https://bloggerdemo.com',
+    issuerBaseURL: 'https://blogger.uk.auth0.com/',
+    // tokenSigningAlg: 'RS256'
+  });
+//   const verifyJwt = jwt({
+//         secret: jwks.expressJwtSecret({
+//             cache: true,
+//             rateLimit: true,
+//             jwksRequestsPerMinute:5,
+//             jwksUri:
+    
+//         }),
+//         audience: 'https://bloggerdemo.com',
+//         issuer: 'https://blogger.uk.auth0.com/',
+//         algorithm: ['RS256']
+//       })
+module.exports = checkJwt
