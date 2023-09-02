@@ -11,31 +11,20 @@ const UserProfile = () => {
         </h3>
       </div>
       <div className="mt-6 border-t border-gray-100">
-        {/* <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Username
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {user.username}
-            </dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Email
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {user?.email}
-            </dd>
-          </div>
-        </dl> */}
-
         <div className="mx-auto bg-gray-200">
-          <ul className="flex flex-col gap-4 bg-white text-gray-900">
-            {user.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
+          <dl className="divide-y divide-gray-100">
+            {user &&
+              user.forEach(([key, value]) => (
+                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <dt className="text-sm font-medium leading-6 text-gray-900">
+                    {key}
+                  </dt>
+                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                    {value}
+                  </dd>
+                </div>
+              ))}
+          </dl>
         </div>
       </div>
     </div>
