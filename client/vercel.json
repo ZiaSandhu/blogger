@@ -1,9 +1,0 @@
-{
-    "rotues":[
-        { "src": "/", "dest": "/" },
-        { "src": "/writeblog", "dest": "/" },
-        { "src": "blog/:id", "dest": "/" },
-        { "src": "/*", "dest": "/" }
-    ]
-  }
-  
