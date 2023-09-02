@@ -24,7 +24,7 @@ let trimContent
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <p className="text-indigo-600"> {comment.user.nickname} </p>
-            <p className="text-gray-400 ml-2">August 29, 2023</p>
+            <p className="text-gray-400 ml-2"> {comment.createdAt.split('T')[0]} </p>
           </div>
           <button className="h-4 w-4" onClick={toggleReplies}>
             {isExpand ? <ChevronUpIcon /> : <ChevronDownIcon />}

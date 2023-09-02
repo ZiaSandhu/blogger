@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 
 import thumbnail from '../assets/thumbnail1.png'
 
-const Blog = ({blog}) => {
+const Blog = ({blog={}}) => {
   // todo implement correct links now dummy
   return (
     <div className="bg-white p-2 h-auto mt-8 rounded shadow lg:flex sm:block items-center">

@@ -1,6 +1,4 @@
 const router = require('express').Router()
-const auth = require('../middleware/auth')
-// const {upload} = require('../middleware/fileUpload')
 const {createBlog, getAllBlogs, getBlogById} = require('../controllers/blogController')
 const {addComment, addReply, getCommentsByBlogId} = require('../controllers/commentController')
 router.get('/',(req,res)=>{

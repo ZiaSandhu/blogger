@@ -3,28 +3,21 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { Auth0Provider } from '@auth0/auth0-react';
-// import { Provider } from 'react-redux';
-// import {store, persistor} from './store';
-// import { PersistGate } from 'redux-persist/integration/react';
+const AUTH_DOMAIN = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN 
+const AUTH_CLIENTID = import.meta.env.VITE_REACT_APP_AUTH0_CLIENTID
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
-      domain="blogger.uk.auth0.com"
-      clientId="MJUAFa2JhDANaAV8RH8rfPKyqG9Ym345"
+      domain={AUTH_DOMAIN}
+      clientId={AUTH_CLIENTID}
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
-      audience='https://bloggerdemo.com'
+      audience="https://bloggerdemo.com"
       // scope='openid profile email'
-
     >
-      {/* <Provider store={store}> */}
-        {/* <PersistGate loading={null} persistor={persistor}> */}
-          <App />
-        {/* </PersistGate> */}
-      {/* </Provider> */}
+      <App />
     </Auth0Provider>
-    ,
   </React.StrictMode>
 );

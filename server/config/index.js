@@ -4,6 +4,7 @@ const URI = process.env.URI
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 const BASE_URL = process.env.BASE_URL
+const FRONTEND_URL = process.env.FRONTEND_URL
 module.exports = {
-    PORT, URI, REFRESH_TOKEN, ACCESS_TOKEN, BASE_URL
+    PORT, URI, REFRESH_TOKEN, ACCESS_TOKEN, BASE_URL, FRONTEND_URL
 }

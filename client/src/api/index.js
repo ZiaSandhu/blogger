@@ -1,20 +1,15 @@
 import axios from 'axios' 
 // import {useAuth0} from "@auth0/auth0-react"
+
+const BACKENDURL = import.meta.env.VITE_REACT_APP_BACKENDURL
+
 const apiCall = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: BACKENDURL,
     withCredentials: true,
     headers:{
         'Content-Type': 'application/json'
     }
 })
-const formApiCall = axios.create({
-    baseURL: 'http://localhost:5000/api',
-    withCredentials: true,
-    headers:{
-        'Content-Type': 'multipart/'
-    }
-})
-// apiCall.defaults.baseURL = 'http:localhost:5000/api'
 export const createBlogApiCall = async(data) => {
     let response
     try {

@@ -18,7 +18,7 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
           {/* <Route path="/signup" element={<SignUp />} /> */}
           <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path="/blog/user/:id" element={<UserBlog />} />
+          {/* <Route path="/blog/user/:id" element={<UserBlog />} /> */}
           <Route path="/writeblog" element={<CreateBlog />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
