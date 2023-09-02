@@ -1,5 +1,5 @@
 {
-    "rotues":[
+    "routes":[
         { "src": "/", "dest": "/" },
         { "src": "/writeblog", "dest": "/" },
         { "src": "blog/:id", "dest": "/" },
