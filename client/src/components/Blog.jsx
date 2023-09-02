@@ -36,14 +36,14 @@ const Blog = ({blog={}}) => {
         {/* Footer content */}
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <NavLink to="/blog/user/1">
+            <NavLink to={`/blogs/user/${blog.user.sub}`}  >
               <img
                 src={blog.user.picture}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full mr-2"
               />
             </NavLink>
-            <NavLink to="/blog/user/1" className="text-gray-600">
+            <NavLink to={`/blogs/user/${blog.user.sub}`} className="text-gray-600">
               {blog.user.nickname}
             </NavLink>
           </div>

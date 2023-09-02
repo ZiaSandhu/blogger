@@ -3,7 +3,8 @@ const fs = require('fs') // built in file system module
 const Blog = require('../models/blog');
 const { BASE_URL } = require('../config/index');
 const blogDto = require('../dto/blogDto')
-const blogDetailDto = require('../dto/blogDetailDto')
+const blogDetailDto = require('../dto/blogDetailDto');
+const { userInfo } = require('os');
 const regex = /^data:image\/[^;]+/;
 
 
@@ -96,9 +97,29 @@ const getBlogById = async (req, res, next) => {
         return next(error)
     }
 }
+const getBlogByUser = async (req, res, next) => {
+    const userId = req.params.id
+    try {
+        let query = Blog.find({'user.sub':userId})
+        query.sort({ 'publishedAt': -1 });
+        let blog = await query.exec()
+
+        let blogs = []
+
+        blog.forEach(item => {
+            let newblog = new blogDto(item)
+            blogs.push(newblog)
+        })  
+
+        res.status(200).json({ msg: 'Get blogs by user', blogs })
+    } catch (error) {
+        return next(error)
+    }
+}
 
 module.exports = {
     createBlog,
     getAllBlogs,
-    getBlogById
+    getBlogById,
+    getBlogByUser
 }

@@ -6,9 +6,6 @@ function GoToTopButton() {
   const [showButton, setShowButton] = useState(false);
 
   function isAtBottom() {
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    // Get the height of the document
     const documentHeight = Math.max(
       document.body.scrollHeight,
       document.documentElement.scrollHeight,
@@ -18,23 +15,28 @@ function GoToTopButton() {
       document.documentElement.clientHeight
     );
 
-    // Get the height of the viewport (visible area)
-    const viewportHeight =
-      window.innerHeight || document.documentElement.clientHeight;
+    // Get the height of the viewport
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-    // Calculate the height difference between the document and the viewport
-    const heightDifference = documentHeight - viewportHeight;
+    // Check if the user is at the bottom
+    const isAtBottom = window.scrollY + viewportHeight >= documentHeight;
 
-    // Check if the scroll position is at the bottom
-    return scrollY >= heightDifference;
+    // Check if the document is taller than the viewport and the user is not at the bottom
+    if (documentHeight > viewportHeight && !isAtBottom) {
+      return true
+    }
+    else{
+      return false
+    }
   }
 
   useEffect(() => {
     const handleScroll = () => {
       if (isAtBottom()) {
-        setShowButton(false);
-      } else {
         setShowButton(true);
+      }
+      else {
+        setShowButton(false);
       }
     };
 

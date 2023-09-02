@@ -26,15 +26,8 @@ function UserProfileCard() {
         <p className="text-gray-600 text-center mb-4">{user.bio}</p>
         <div className="text-center flex justify-center items-center gap-3">
           <p className="text-gray-700">{user.country}</p>
+          <span className='h-2 w-2 mt-2 bg-gray-600 rounded-full'></span>
           <p className="text-gray-700">{user.totalPosts} posts</p>
-          {/* <div className="mt-4 flex justify-center items-center gap-4 h-full"> */}
-          <NavLink to={user.socialLinks.linkedin} className="">
-            <TiSocialLinkedin className="h-4 w-4" />
-          </NavLink>
-          <NavLink to={user.socialLinks.twitter} className="">
-            <TiSocialTwitter className="h-4 w-4" />
-          </NavLink>
-          {/* </div> */}
         </div>
       </div>
     </div>

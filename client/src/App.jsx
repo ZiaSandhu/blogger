@@ -13,28 +13,9 @@ import GoToBottom from './components/GoToBottom';
 import UserProfile from './components/UserProfile';
 function App() {
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     // Determine whether to show the "Go to Top" button
-  //     if (window.scrollY > 100) { // Adjust the threshold as needed
-  //       // setShowGoToTopButton(true);
-  //     } else {
-  //       // setShowGoToTopButton(false);
-  //     }
-  //   };
-
-  //   // Attach the event listener when the component mounts
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-
 
   return (
-    <div className="box-border min-h-screen bg-gray-100 shadow-inner ">
+    <div className=" relative box-border min-h-screen bg-gray-100 shadow-inner ">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -42,7 +23,7 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path="/blog/user/:id" element={<UserBlog />} />
+          <Route path="/blogs/user/:id" element={<UserBlog />} />
           <Route path="/writeblog" element={<CreateBlog />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>

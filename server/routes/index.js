@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {createBlog, getAllBlogs, getBlogById} = require('../controllers/blogController')
+const {createBlog, getAllBlogs, getBlogById, getBlogByUser} = require('../controllers/blogController')
 const {addComment, addReply, getCommentsByBlogId} = require('../controllers/commentController')
 router.get('/',(req,res)=>{
     res.json({msg:'Local host 5000'})
@@ -7,10 +7,7 @@ router.get('/',(req,res)=>{
 router.post('/blog',createBlog)
 router.get('/blogs',getAllBlogs)
 router.get('/blog/:_id',getBlogById)
-router.get('/blog/user/:id',(req,res)=>{
-    let userId = req.params
-    res.json({msg: 'get blog by users', userId})
-})
+router.get('/blogs/user/:id', getBlogByUser)
 
 router.post('/addComment',addComment)
 router.post('/addReply',addReply)

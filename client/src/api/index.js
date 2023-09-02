@@ -38,6 +38,15 @@ export const getBlogByIdApiCall = async(id) => {
     }
     return response
 } 
+export const getBlogByUserApiCall = async(id) => {
+    let response
+    try {
+        response = await apiCall.get(`/blogs/user/${id}`)
+    } catch (error) {
+        response = error.response
+    }
+    return response
+} 
 export const addCommentApiCall = async(data) => {
     let response
     try {

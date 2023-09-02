@@ -13,11 +13,11 @@ function classNames(...classes) {
 }
 export default function Navbar() {
 
-  const {isAuthenticated} = useAuth0()
+  const {user,isAuthenticated} = useAuth0()
 
   const userNavigation = [
     { name: "Blogs", to: "/", current: true },
-    { name: "My Blogs", to: "/blog/user/:id", current: false },
+    { name: "My Blogs", to: `/blogs/user/${user?.sub}`, current: false },
     { name: "Write Blog", to: "/writeblog", current: false },
   ];
 
