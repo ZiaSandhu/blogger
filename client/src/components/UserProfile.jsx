@@ -33,7 +33,7 @@ const UserProfile = () => {
         <div className="mx-auto bg-gray-200">
           <ul className="flex flex-col gap-4 bg-white text-gray-900">
             {user.map((item) => (
-              <li>{user.item}</li>
+              <li>{item}</li>
             ))}
           </ul>
         </div>
