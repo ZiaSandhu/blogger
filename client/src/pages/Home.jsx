@@ -11,7 +11,6 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const apiData = await getAllBlogsApiCall();
-        await getUsers();
         setData(apiData.data.blogs);
         setLoading(false);
       } catch (error) {

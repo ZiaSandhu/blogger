@@ -22,14 +22,12 @@ export const getUsers = async() => {
           }
         };
         
-        axios.request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        
+        // let response
+        try {
+            return await axios.request(config)
+        } catch (error) {
+            return error.response
+        }        
 }
 
 export const createBlogApiCall = async(data) => {

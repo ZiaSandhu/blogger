@@ -9,7 +9,7 @@ import ErrorPage from './components/ErrorPage';
 import GoToTopButton from './components/GoToTopButton';
 import GoToBottom from './components/GoToBottom';
 import UserProfile from './components/UserProfile';
-
+import Test from './pages/Test'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 // import { useEffect } from 'react';
 import axios from 'axios';
@@ -29,6 +29,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/blogs/user/:id" element={<UserBlog />} />
           <Route path="/writeblog" element={<ProtectCreateBlog />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <GoToTopButton />
