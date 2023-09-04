@@ -11,14 +11,14 @@ return (
     {/* notification button todo implement functionality in future */}
     {isAuthenticated && (
       <>
-        <button
+        {/* <button
           type="button"
           className="relative rounded-full bg-transparent p-1 text-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
         >
           <span className="absolute -inset-1.5" />
           <span className="sr-only">View notifications</span>
           <BellIcon className="h-6 w-6" aria-hidden="true" />
-        </button>
+        </button> */}
         {/* user menu */}
         <div className="relative ml-3">
           <div>
