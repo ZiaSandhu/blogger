@@ -3,8 +3,7 @@ import { Disclosure, } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/blogger_logo.png";
 import { NavLink } from "react-router-dom";
-// import { useSelector } from "react-redux";
-import { LoginButton } from "./Auth";
+import { LoginButton, TestButton } from "./Auth";
 import User from "./UserMenu";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -17,7 +16,7 @@ export default function Navbar() {
 
   const userNavigation = [
     { name: "Blogs", to: "/", current: true },
-    // { name: "My Blogs", to: `/blogs/user/${user?.sub}`, current: false },
+    { name: "My Blogs", to: `/myblogs`, current: false },
     { name: "Write Blog", to: "/writeblog", current: false },
   ];
 
@@ -69,6 +68,7 @@ export default function Navbar() {
                         {item.name}
                       </NavLink>
                     ))}
+                    {/* <TestButton /> */}
                   </div>
                 </div>
               </div>

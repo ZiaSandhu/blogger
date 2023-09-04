@@ -10,7 +10,7 @@ import { createBlogApiCall } from "../api/index";
 
 export default function CreateBlog() {
   const editor = useRef(null);
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [content, setContent] = useState("");
   const [error, setError] = useState();
   const [thumbnail, setThumbnail] = useState(null);
@@ -50,7 +50,8 @@ export default function CreateBlog() {
     };
     let response;
     try {
-      response = await createBlogApiCall(post);
+      let token = await getAccessTokenSilently()
+      response = await createBlogApiCall(post,token);
       if(response.status === 201){
         reset()
         setThumbnail(null)

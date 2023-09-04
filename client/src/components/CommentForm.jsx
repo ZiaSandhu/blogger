@@ -9,7 +9,7 @@ import { addCommentApiCall } from '../api';
 const CommentForm = ({blogId,fetchData}) => {
   const [content, setComment] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false );
-  const {user,isAuthenticated} = useAuth0()
+  const {user,isAuthenticated, getAccessTokenSilently} = useAuth0()
   const addEmoji = (e) => {
     console.log(e.unified)
     // let array =n []
@@ -26,7 +26,8 @@ const CommentForm = ({blogId,fetchData}) => {
     if (content.trim() === "") return;
     // Reset the form
     try {
-      await addCommentApiCall({user,content,blogId})
+      let token = await getAccessTokenSilently()
+      await addCommentApiCall({user,content,blogId}, token)
       await fetchData()
     } catch (error) {
       console.log("🚀 ~ file: CommentForm.jsx:32 ~ handleSubmit ~ error:", error)

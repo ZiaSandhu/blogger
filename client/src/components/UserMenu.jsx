@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { LogoutButton } from "./Auth";
+import { LogoutButton, TestButton } from "./Auth";
 import {  BellIcon } from "@heroicons/react/24/outline";
 import {NavLink} from 'react-router-dom'
 const User = () => {
@@ -34,9 +34,10 @@ return (
 
           {showUserMenu && (
             <div className="absolute right-0 z-10 mt-2 px-4 py-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              {/* <NavLink to="/userprofile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
+              <NavLink to="/userprofile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
                 User Profile
-              </NavLink> */}
+              </NavLink>
+              {/* <TestButton /> */}
               <LogoutButton />
             </div>
           )}

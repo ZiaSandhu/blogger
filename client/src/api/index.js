@@ -10,30 +10,34 @@ const apiCall = axios.create({
         'Content-Type': 'application/json'
     }
 })
+const protectedApiCall = axios.create({
+    baseURL: BACKENDURL,
+    withCredentials: true,
+    headers:{
+        'Content-Type': 'application/json'
+    }
+})
 
-export const getUsers = async() => {
-
-        let config = {
-          method: 'get',
-          maxBodyLength: Infinity,
-          url: 'https://blogger.uk.auth0.com/api/v2/users',
-          headers: { 
-            'Accept': 'application/json'
-          }
-        };
-        
-        // let response
+export const testingProtectedRoute = async(token) => {
         try {
-            return await axios.request(config)
+            return await protectedApiCall.post('/protectedRoute',{data:"hello"},{
+                headers:{
+                    'Authorization': `Bearer ${token}`
+                }
+            })
         } catch (error) {
             return error.response
         }        
 }
 
-export const createBlogApiCall = async(data) => {
+export const createBlogApiCall = async(data,token) => {
     let response
     try {
-        response = await apiCall.post('/blog',data)
+        response = await apiCall.post('/blog',data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
     } catch (error) {
         response = error
     }
@@ -67,19 +71,27 @@ export const getBlogByUserApiCall = async(id) => {
     }
     return response
 } 
-export const addCommentApiCall = async(data) => {
+export const addCommentApiCall = async(data,token) => {
     let response
     try {
-        response = await apiCall.post(`/addComment`,data)
+        response = await apiCall.post(`/addComment`,data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
     } catch (error) {
         response = error.response
     }
     return response
 } 
-export const addReplyApiCall = async(data) => {
+export const addReplyApiCall = async(data,token) => {
     let response
     try {
-        response = await apiCall.post(`/addReply`,data)
+        response = await apiCall.post(`/addReply`,data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
     } catch (error) {
         response = error.response
     }

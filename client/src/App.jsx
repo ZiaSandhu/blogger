@@ -5,19 +5,18 @@ import BlogDetail from './components/BlogDetail'
 import CreateBlog from './components/CreateBlog';
 import Footer from './components/Footer';
 import UserBlog from './pages/UserBlog';
+import MyBlogs from './pages/MyBlogs';
 import ErrorPage from './components/ErrorPage';
 import GoToTopButton from './components/GoToTopButton';
 import GoToBottom from './components/GoToBottom';
 import UserProfile from './components/UserProfile';
-import Test from './pages/Test'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-// import { useEffect } from 'react';
-import axios from 'axios';
 
 function App() {
 
   const ProtectUserProfile = withAuthenticationRequired(UserProfile)
   const ProtectCreateBlog = withAuthenticationRequired(CreateBlog)
+  const ProtectedMyBlog = withAuthenticationRequired(MyBlogs)
 
   return (
     <div className=" relative box-border min-h-screen bg-gray-100 shadow-inner ">
@@ -25,9 +24,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/userprofile" element={<ProtectUserProfile />} /> */}
+          <Route path="/userprofile" element={<ProtectUserProfile />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/blogs/user/:id" element={<UserBlog />} />
+          <Route path="/myblogs" element={<ProtectedMyBlog />} />
           <Route path="/writeblog" element={<ProtectCreateBlog />} />
           {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/*" element={<ErrorPage />} />

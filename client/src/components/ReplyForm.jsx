@@ -9,7 +9,7 @@ import { addReplyApiCall } from '../api';
 const ReplyForm = ({mainComment, parentComment,fetchData}) => {
   const [content, setComment] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false );
-  const {user,isAuthenticated} = useAuth0()
+  const {user,isAuthenticated, getAccessTokenSilently} = useAuth0()
   const addEmoji = (e) => {
     console.log(e.unified)
     // let array =n []
@@ -33,7 +33,8 @@ const ReplyForm = ({mainComment, parentComment,fetchData}) => {
       parentComment
     }
     try {
-       await addReplyApiCall(reply)
+      let token = await getAccessTokenSilently()
+       await addReplyApiCall(reply, token)
        await fetchData();
     } catch (error) {
     }

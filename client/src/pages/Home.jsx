@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
-import { getAllBlogsApiCall, getUsers } from "../api";
+import { getAllBlogsApiCall } from "../api";
 import NoRecord from "../components/NoRecord";
 import BlogLoader from "../components/BlogLoader";
 const Home = () => {
