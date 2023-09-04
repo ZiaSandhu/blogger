@@ -58,7 +58,7 @@ const UserBlog = () => {
 
   return (
     <>
-      <UserProfileCard userData = {data[0].user} postCount = {data.length} />
+      <UserProfileCard userData = {data.length>0 &&  data[0].user} postCount = {data.length} />
       <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
         {data?.length > 0 ? (
           data.map((blog, index) => <Blog blog={blog} key={index} />)
