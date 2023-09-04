@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
-import { getAllBlogsApiCall } from "../api";
+import { getAllBlogsApiCall, getUsers } from "../api";
 import NoRecord from "../components/NoRecord";
 import BlogLoader from "../components/BlogLoader";
 const Home = () => {
@@ -11,6 +11,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const apiData = await getAllBlogsApiCall();
+        await getUsers();
         setData(apiData.data.blogs);
         setLoading(false);
       } catch (error) {
