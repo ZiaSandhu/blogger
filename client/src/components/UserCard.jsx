@@ -1,15 +1,12 @@
 import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 
 
 function UserProfileCard({userData, postCount}) {
-const {user, isAuthenticated} = useAuth0()
-if(isAuthenticated && user.sub === userData.sub){
-  userData = user
-}
+
   return (
     <div className="w-full bg-gray-300 shadow">
       <div className="bg-gray-300 max-w-md  p-6 mx-auto">

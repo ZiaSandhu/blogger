@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const userNavigation = [
     { name: "Blogs", to: "/", current: true },
-    { name: "My Blogs", to: `/blogs/user/${user?.sub}`, current: false },
+    // { name: "My Blogs", to: `/blogs/user/${user?.sub}`, current: false },
     { name: "Write Blog", to: "/writeblog", current: false },
   ];
 
