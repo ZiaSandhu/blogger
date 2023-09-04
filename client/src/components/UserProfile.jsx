@@ -2,7 +2,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const UserProfile = () => {
   const { user } = useAuth0();
-  console.log("🚀 ~ file: UserProfile.jsx:5 ~ UserProfile ~ user:", user)
 
   return (
     <div className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -11,7 +10,7 @@ const UserProfile = () => {
           User Information
         </h3>
       </div>
-      <div className="mt-6 border-t border-gray-100">
+      <div className="mt-6 border-t border-gray-100 pl-3">
         <div className="mx-auto bg-gray-200">
           <dl className="divide-y divide-gray-100">
             { user && Object.entries(user).map(([key, value]) => (
