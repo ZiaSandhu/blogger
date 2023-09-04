@@ -29,7 +29,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/blogs/user/:id" element={<UserBlog />} />
           <Route path="/writeblog" element={<ProtectCreateBlog />} />
-          <Route path="/test" element={<Test />} />
+          {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <GoToTopButton />
