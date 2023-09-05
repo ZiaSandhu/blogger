@@ -43,6 +43,32 @@ export const createBlogApiCall = async(data,token) => {
     }
     return response
 } 
+export const deleteBlogApiCall = async(id,token) => {
+    let response
+    try {
+        response = await apiCall.delete(`/blog/delete/${id}`,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    } catch (error) {
+        response = error
+    }
+    return response
+} 
+export const editBlogApiCall = async(blogId,data,token) => {
+    let response
+    try {
+        response = await apiCall.put(`/blog/edit/${blogId}`,data,{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    } catch (error) {
+        response = error
+    }
+    return response
+} 
 export const getAllBlogsApiCall = async() => {
     let response
     try {

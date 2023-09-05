@@ -7,6 +7,7 @@ class blogDto {
         this.title = blog.title
         this.readTime = blog.readTime
         this.tag = blog.tag
+        this.content = blog.content
     }
 }
 module.exports = blogDto

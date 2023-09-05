@@ -11,11 +11,13 @@ import GoToTopButton from './components/GoToTopButton';
 import GoToBottom from './components/GoToBottom';
 import UserProfile from './components/UserProfile';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+import EditBlog from './components/EditBlog';
 
 function App() {
 
   const ProtectUserProfile = withAuthenticationRequired(UserProfile)
   const ProtectCreateBlog = withAuthenticationRequired(CreateBlog)
+  const ProtectEditBlog = withAuthenticationRequired(EditBlog)
   const ProtectedMyBlog = withAuthenticationRequired(MyBlogs)
 
   return (
@@ -29,7 +31,7 @@ function App() {
           <Route path="/blogs/user/:id" element={<UserBlog />} />
           <Route path="/myblogs" element={<ProtectedMyBlog />} />
           <Route path="/writeblog" element={<ProtectCreateBlog />} />
-          {/* <Route path="/test" element={<Test />} /> */}
+          <Route path="/editblog" element={<ProtectEditBlog />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <GoToTopButton />
