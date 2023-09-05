@@ -4,7 +4,6 @@ import Blog from "../components/Blog";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBlogByUserApiCall, deleteBlogApiCall } from "../api/index";
 import NoRecord from "../components/NoRecord";
-import BlogLoader from "../components/BlogLoader";
 import { PencilIcon,TrashIcon } from "@heroicons/react/20/solid";
 import { useNavigate, NavLink } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -47,11 +46,7 @@ const UserBlog = () => {
   if (loading) {
     return (
       <>
-        {/* <UserProfileCard /> */}
-
-        <div className="mx-auto max-w-2xl mt-20 flex flex-col gap-5  px-2 sm:px-6 lg:px-8 text-center h-auto">
-          <Loader />
-        </div>
+      <Loader />
       </>
     );
   }

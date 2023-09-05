@@ -9,7 +9,6 @@ import HTMLReactParser from "html-react-parser";
 // import comments from "./comment.json";
 import { getBlogByIdApiCall } from "../api";
 import { useParams } from "react-router-dom";
-import BlogDetailSkelton from './BlogDetailSkelton'
 import Loader from "./Loader";
 
 const BlogDetail = () => {

@@ -2,15 +2,19 @@ import React from 'react'
 import { Triangle } from  'react-loader-spinner'
 const Loader = () => {
   return (
-    <Triangle
-      height="80"
-      width="80"
-      color="#4fa94d"
-      ariaLabel="triangle-loading"
-      wrapperStyle={{}}
-      wrapperClassName=""
-      visible={true}
-    />
+    <div className="mx-auto max-w-5xl flex justify-center items-center mt-20  px-2 sm:px-6 lg:px-8 text-center h-auto">
+      <div>
+        <Triangle
+          height="120"
+          width="120"
+          color="gray"
+          ariaLabel="triangle-loading"
+          wrapperStyle={{}}
+          wrapperClassName=""
+          visible={true}
+        />
+      </div>
+    </div>
   );
 }
 

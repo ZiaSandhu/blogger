@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
 import { getAllBlogsApiCall } from "../api";
 import NoRecord from "../components/NoRecord";
-import BlogLoader from "../components/BlogLoader";
 import Loader from "../components/Loader";
 const Home = () => {
   const [data, setData] = useState([]);
@@ -23,14 +22,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="mx-auto max-w-2xl mt-20 flex flex-col gap-5  px-2 sm:px-6 lg:px-8 text-center h-auto">
-        <Loader />
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
@@ -40,7 +31,8 @@ const Home = () => {
   }
   return (
     <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
-      {data?.length > 0 ? (
+      {loading && <Loader />}
+      {!loading && data?.length > 0 ? (
         data.map((blog, index) => <Blog blog={blog} key={index} />)
       ) : (
         <NoRecord />

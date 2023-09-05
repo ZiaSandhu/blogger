@@ -40,16 +40,6 @@ const createBlog = async (req, res, next) => {
     }
 
     const { title, user, content, thumbnail, readTime, tag } = req.body
-    // handle photo 
-    const imageType = getImageType(thumbnail)
-    const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
-    const imagePath = `assets/${Date.now()}-${user.sub?.split('|')[1]}.${imageType}`
-    // storing locally
-    try {
-        fs.writeFileSync(imagePath, buffer)
-    } catch (error) {
-        return next(error)
-    }
 
     // save to database
     let blog;
@@ -58,7 +48,7 @@ const createBlog = async (req, res, next) => {
             title,
             user,
             content,
-            thumbnail: `${BASE_URL}/${imagePath}`,
+            thumbnail,
             readTime,
             tag
         });
@@ -83,27 +73,12 @@ const editBlogById = async (req, res, next) => {
     }
     const blogId = req.params.id
     const { title, content, thumbnail, readTime, tag } = req.body
-    // handle photo 
-    const isBase64Image = /^data:image\/(png|jpg|jpeg);base64,/.test(thumbnail);
-    let imageUrl = thumbnail
-    // todo: if base 64 then delete old one
-    if(isBase64Image){
-       const imageType = getImageType(thumbnail)
-        const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
-        imagePath = `assets/${Date.now()}-${user.sub?.split('|')[1]}.${imageType}`
-        // storing locally
-        try {
-            fs.writeFileSync(imagePath, buffer)
-        } catch (error) {
-            return next(error)
-        }
-        imageUrl = `${BASE_URL}/${imagePath}`
-    }
+    
 
     // update to database
     try {
         await Blog.updateOne({_id:blogId},{
-            title, thumbnail: imageUrl, content, tag,readTime
+            title, thumbnail, content, tag,readTime
         })
     } catch (error) {
         return next(error)
