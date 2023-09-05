@@ -3,6 +3,7 @@ import Blog from "../components/Blog";
 import { getAllBlogsApiCall } from "../api";
 import NoRecord from "../components/NoRecord";
 import BlogLoader from "../components/BlogLoader";
+import Loader from "../components/Loader";
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,9 +26,7 @@ const Home = () => {
   if (loading) {
     return (
       <div className="mx-auto max-w-2xl mt-20 flex flex-col gap-5  px-2 sm:px-6 lg:px-8 text-center h-auto">
-        <BlogLoader />
-        <BlogLoader />
-        <BlogLoader />
+        <Loader />
       </div>
     );
   }

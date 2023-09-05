@@ -7,6 +7,7 @@ import NoRecord from "../components/NoRecord";
 import BlogLoader from "../components/BlogLoader";
 import { PencilIcon,TrashIcon } from "@heroicons/react/20/solid";
 import { useNavigate, NavLink } from "react-router-dom";
+import Loader from "../components/Loader";
 const UserBlog = () => {
   const navigate = useNavigate()
 
@@ -49,8 +50,7 @@ const UserBlog = () => {
         {/* <UserProfileCard /> */}
 
         <div className="mx-auto max-w-2xl mt-20 flex flex-col gap-5  px-2 sm:px-6 lg:px-8 text-center h-auto">
-          <BlogLoader />
-          <BlogLoader />
+          <Loader />
         </div>
       </>
     );

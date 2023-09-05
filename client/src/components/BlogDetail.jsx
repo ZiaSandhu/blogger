@@ -10,6 +10,7 @@ import HTMLReactParser from "html-react-parser";
 import { getBlogByIdApiCall } from "../api";
 import { useParams } from "react-router-dom";
 import BlogDetailSkelton from './BlogDetailSkelton'
+import Loader from "./Loader";
 
 const BlogDetail = () => {
   const [data, setData] = useState();
@@ -33,7 +34,7 @@ const BlogDetail = () => {
 
     if (loading) {
         return <div className="mx-auto max-w-2xl mt-10 px-2 sm:px-6 lg:px-8 text-center h-auto">
-          <BlogDetailSkelton />
+          <Loader />
         </div>;
     }
 
