@@ -12,7 +12,7 @@ const Blog = ({blog={}}) => {
             src={blog.thumbnail}
             alt="Image"
             className="w-full h-auto rounded"
-            loading='lazy'
+            loading="lazy"
           />
         </NavLink>
       </div>
@@ -23,12 +23,18 @@ const Blog = ({blog={}}) => {
         <div className="mb-16">
           <div className="flex justify-between items-center">
             {/* todo click on tag to display blog of that tags */}
-            <NavLink to="/tag/1" className="text-blue-500 font-semibold">
+            <NavLink
+              to={`/blogs/tag/${blog.tag}`}
+              className="text-blue-500 font-semibold hover:underline"
+            >
               #{blog.tag}
             </NavLink>
             <p className="text-gray-400">{blog.readTime} min read </p>
           </div>
-          <NavLink to={`/blog/${blog._id}`} className="text-2xl font-bold mt-2 hover:underline">
+          <NavLink
+            to={`/blog/${blog._id}`}
+            className="text-2xl font-bold mt-2 hover:underline"
+          >
             {blog.title}
           </NavLink>
         </div>
@@ -36,18 +42,21 @@ const Blog = ({blog={}}) => {
         {/* Footer content */}
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <NavLink to={`/blogs/user/${blog.user.sub}`}  >
+            <NavLink to={`/blogs/user/${blog.user.sub}`}>
               <img
                 src={blog.user.picture}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full mr-2"
               />
             </NavLink>
-            <NavLink to={`/blogs/user/${blog.user.sub}`} className="text-gray-600">
+            <NavLink
+              to={`/blogs/user/${blog.user.sub}`}
+              className="text-gray-600"
+            >
               {blog.user.nickname}
             </NavLink>
           </div>
-          <p className="text-gray-400">{blog.publishedAt.split('T')[0]} </p>
+          <p className="text-gray-400">{blog.publishedAt.split("T")[0]} </p>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function CreateBlog() {
   const [content, setContent] = useState("");
   const [error, setError] = useState();
   const [thumbnail, setThumbnail] = useState(null);
-
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const config = {
@@ -39,7 +39,7 @@ export default function CreateBlog() {
       return;
     }
     if (!thumbnail || content === "") {
-      setError("Something is wrong. Check Data");
+      setError("Check post or thumbnail");
       return;
     }
     const post = {
@@ -49,6 +49,7 @@ export default function CreateBlog() {
       content,
     };
     let response;
+    setLoading(true)
     try {
       let token = await getAccessTokenSilently()
       response = await createBlogApiCall(post,token);
@@ -56,12 +57,12 @@ export default function CreateBlog() {
         reset()
         setThumbnail(null)
         setContent(null)
+        setLoading(false)
         navigate('/')
       }
-      
-      
     } catch (error) {
-      // response = error;
+      setLoading(false)
+      setError(error.data.message)
     }
   };
 
@@ -78,6 +79,13 @@ export default function CreateBlog() {
       "image/*": [".jpeg", ".png"],
     },
   });
+
+  if(loading){
+    <>
+    {/* loader */}
+    </>
+  }
+
   return (
     <div className="mx-auto mt-10 max-w-5xl px-2 py-4 bg-white rounded-2xl shadow-sm sm:px-6 lg:px-8">
       <h1 className="text-2xl text-center text-gray-800">Write an Article</h1>
@@ -106,6 +114,7 @@ export default function CreateBlog() {
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
+            { errors.title && <p className="text-red-500"> {errors.title.message} </p> }
           </div>
           {/* flex tag and time */}
           <div className="flex justify-between item-center gap-4">
@@ -125,6 +134,7 @@ export default function CreateBlog() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+            { errors.tag && <p className="text-red-500"> {errors.tag.message} </p> }
             </div>
             {/* Time to read */}
             <div className="w-1/2">
@@ -145,6 +155,7 @@ export default function CreateBlog() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+            { error.readTime && <p className="text-red-500"> {errors.readTime.message} </p> }
             </div>
           </div>
           {/* thumbnail dropzone */}

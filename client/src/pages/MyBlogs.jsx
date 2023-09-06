@@ -7,13 +7,17 @@ import NoRecord from "../components/NoRecord";
 import { PencilIcon,TrashIcon } from "@heroicons/react/20/solid";
 import { useNavigate, NavLink } from "react-router-dom";
 import Loader from "../components/Loader";
+import DeleteModal from "../components/DeleteModel";
 const UserBlog = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  const [showDeleteModel, setShowDeleteModel] = useState(false);
+  const [blogId, setBlogId] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,7 +25,7 @@ const UserBlog = () => {
         setData(apiData.data.blogs);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error.data.message);
         setLoading(false);
       }
     };
@@ -29,33 +33,35 @@ const UserBlog = () => {
     fetchData();
   }, []);
 
+  const handleEdit = async (blog) => {
+    navigate(`/editblog`, { state: { blog } });
+  };
 
-  const handleEdit = async(blog) => {
-    navigate(`/editblog`,{state: {blog}})
-  }
-  const handleDelete = async(blogId) => {
-  try {
-    let token = await getAccessTokenSilently()
-    await deleteBlogApiCall(blogId,token);
-    setData(data.filter(blog => blog._id !== blogId));
-  } catch (error) {
-    console.log(error);
-  }
-  }
+  const handleDelete = async (blogId) => {
+    try {
+      let token = await getAccessTokenSilently();
+      await deleteBlogApiCall(blogId, token);
+      setData(data.filter((blog) => blog._id !== blogId));
+    } catch (error) {
+      setError(error.data.message)
+    }
+    setBlogId(null)
+    setShowDeleteModel(false)
+  };
 
   if (loading) {
     return (
       <>
-      <Loader />
+        <Loader />
       </>
     );
   }
 
   if (error) {
     return (
-      <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
-        Something Went wrong. Plz try again.
-      </div>
+      <div className="mx-auto max-w-5xl mt-10 h-[60vh] px-2 sm:px-6 lg:px-8">
+        {error}
+      </div> 
     );
   }
 
@@ -77,7 +83,10 @@ const UserBlog = () => {
                       <PencilIcon className="h-4 w-4" /> Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(blog._id)}
+                      onClick={() => {
+                        setBlogId(blog._id),
+                        setShowDeleteModel(true)
+                      }}
                       className="px-3 py-1 flex gap-2 items-center justify-between bg-red-500 hover:bg-red-600 text-white rounded-md"
                     >
                       <TrashIcon className="h-4 w-4" /> Delete
@@ -89,6 +98,15 @@ const UserBlog = () => {
               <NoRecord />
             )}
           </div>
+          {showDeleteModel && (
+            <DeleteModal
+              open={showDeleteModel}
+              setOpen={setShowDeleteModel}
+              onDeleteHandle={handleDelete}
+              blogId={blogId}
+              setBlogId={blogId}
+            />
+          )}
         </>
       )}
     </>

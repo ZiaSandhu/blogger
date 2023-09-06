@@ -10,34 +10,42 @@ const CommentForm = ({blogId,fetchData}) => {
   const [content, setComment] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false );
   const {user,isAuthenticated, getAccessTokenSilently} = useAuth0()
+  const [error,setError] = useState(null)
   const addEmoji = (e) => {
     console.log(e.unified)
-    // let array =n []
     const sym = e.unified.split('-')
     let codeArray = []
     sym.forEach(el => codeArray.push('0x'+el))
     const emoji = String.fromCodePoint(...codeArray)
     console.log(codeArray)
     setComment(content + emoji)
-
   }
   const handleSubmit = async(e) => {
+    setError(null)
     e.preventDefault();
-    if (content.trim() === "") return;
+    if (content.trim() === "") {
+      setError("Comment can't be empty!")
+      return;
+    }
     // Reset the form
+    // setLoading(true)
     try {
-      let token = await getAccessTokenSilently()
-      await addCommentApiCall({user,content,blogId}, token)
-      await fetchData()
+
+      let token = await getAccessTokenSilently();
+      await addCommentApiCall({ user, content, blogId }, token);
+      await fetchData();
+      // setLoading(false)
     } catch (error) {
-      console.log("🚀 ~ file: CommentForm.jsx:32 ~ handleSubmit ~ error:", error)
+      setError(error.data.message)
     }
     setComment("");
-   };
+  };
 
   return (
     <div className="">
-      {isAuthenticated ? <form onSubmit={handleSubmit} className="flex gap-3 items-end">
+      {isAuthenticated ? 
+      <div>
+        <form onSubmit={handleSubmit} className="flex gap-3 items-end">
         <div className="relative flex items-end p-2 w-full bg-gray-200 rounded-md">
           <textarea
             className="w-full resize-none outline-none border-none bg-transparent focus:border-none focus:outline-none focus:ring-0"
@@ -70,7 +78,9 @@ const CommentForm = ({blogId,fetchData}) => {
         >
           Comment
         </button>
-      </form> : 
+      </form>
+      {error && <p className="text-red-500"> {error} </p> }
+      </div> : 
       <p className='text-left font-normal text-indigo-700' >Login to Comment</p>
       }
     </div>

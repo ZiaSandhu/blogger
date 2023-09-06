@@ -10,16 +10,17 @@ import { editBlogApiCall } from "../api";
 
 export default function EditBlog() {
   const editor = useRef(null);
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
- 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-  const blog = location.state?.blog
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const blog = location.state?.blog;
 
   const [content, setContent] = useState(blog.content);
   const [error, setError] = useState();
   const [thumbnail, setThumbnail] = useState(blog?.thumbnail);
+  const [loading, setLoading] = useState(false);
 
   const config = {
     uploader: {
@@ -35,11 +36,11 @@ export default function EditBlog() {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues:{
-        title: blog.title,
-        tag: blog.tag,
-        readTime: blog.readTime
-    }
+    defaultValues: {
+      title: blog.title,
+      tag: blog.tag,
+      readTime: blog.readTime,
+    },
   });
   const submit = async (data) => {
     setError(null);
@@ -57,18 +58,22 @@ export default function EditBlog() {
       content,
     };
     let response;
+    setLoading(true);
     try {
-      let token = await getAccessTokenSilently()
-      response = await editBlogApiCall(blog._id,post,token);
-    console.log(post)
-      if(response.status === 201){
-        reset()
-        setThumbnail(null)
-        setContent(null)
-        navigate('/myblogs')
+      let token = await getAccessTokenSilently();
+      response = await editBlogApiCall(blog._id, post, token);
+      console.log(post);
+      if (response.status === 201) {
+        console.log("blog updated");
+        reset();
+        setThumbnail(null);
+        setContent(null);
+        setLoading(false);
+        navigate("/myblogs");
       }
     } catch (error) {
-      // response = error;
+      setError(error.data.message);
+      setLoading(false);
     }
   };
 
@@ -85,6 +90,11 @@ export default function EditBlog() {
       "image/*": [".jpeg", ".png"],
     },
   });
+
+  if (loading) {
+    <>{/* loader */}</>;
+  }
+
   return (
     <div className="mx-auto mt-10 max-w-5xl px-2 py-4 bg-white rounded-2xl shadow-sm sm:px-6 lg:px-8">
       <h1 className="text-2xl text-center text-gray-800">Write an Article</h1>
@@ -108,10 +118,10 @@ export default function EditBlog() {
                     value: 10,
                     message: "Title is not less than 10 characters",
                   },
-                    validate: {
-                      noEmptySpace: (value) =>
-                        value.trim() !== "" || "Title cannot be empty spaces",
-                    },
+                  validate: {
+                    noEmptySpace: (value) =>
+                      value.trim() !== "" || "Title cannot be empty spaces",
+                  },
                 })}
                 rows={1}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

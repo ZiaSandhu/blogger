@@ -5,6 +5,7 @@ import BlogDetail from './components/BlogDetail'
 import CreateBlog from './components/CreateBlog';
 import Footer from './components/Footer';
 import UserBlog from './pages/UserBlog';
+import TagBlogs from './pages/TagBlogs';
 import MyBlogs from './pages/MyBlogs';
 import ErrorPage from './components/ErrorPage';
 import GoToTopButton from './components/GoToTopButton';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/userprofile" element={<ProtectUserProfile />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/blogs/user/:id" element={<UserBlog />} />
+          <Route path="/blogs/tag/:tag" element={<TagBlogs />} />
           <Route path="/myblogs" element={<ProtectedMyBlog />} />
           <Route path="/writeblog" element={<ProtectCreateBlog />} />
           <Route path="/editblog" element={<ProtectEditBlog />} />

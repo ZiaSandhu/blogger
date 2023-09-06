@@ -1,0 +1,10 @@
+{
+  "name": "your-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"cd client && npm run dev\" \"cd server && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

@@ -4,7 +4,7 @@ import { getAllBlogsApiCall } from "../api";
 import NoRecord from "../components/NoRecord";
 import Loader from "../components/Loader";
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -32,11 +32,10 @@ const Home = () => {
   return (
     <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
       {loading && <Loader />}
-      {!loading && data?.length > 0 ? (
-        data.map((blog, index) => <Blog blog={blog} key={index} />)
-      ) : (
-        <NoRecord />
-      )}
+      {!loading &&
+        data &&
+        data.map((blog, index) => <Blog blog={blog} key={index} />)}
+      {!loading && !data && <NoRecord />}
     </div>
   );
 };

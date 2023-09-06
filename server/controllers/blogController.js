@@ -41,6 +41,16 @@ const createBlog = async (req, res, next) => {
 
     const { title, user, content, thumbnail, readTime, tag } = req.body
 
+    //upload photo
+    const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
+    const imagePath = `assets/${Date.now()}-${title.split().join('-')}.png`
+    // storing locally
+    try {
+        fs.writeFileSync(imagePath, buffer)
+    } catch (error) {
+        return next(error)
+    }
+
     // save to database
     let blog;
     try {
@@ -48,7 +58,7 @@ const createBlog = async (req, res, next) => {
             title,
             user,
             content,
-            thumbnail,
+            thumbnail: `${BASE_URL}/${imagePath}`,
             readTime,
             tag
         });
@@ -73,12 +83,27 @@ const editBlogById = async (req, res, next) => {
     }
     const blogId = req.params.id
     const { title, content, thumbnail, readTime, tag } = req.body
-    
+
+    let thumbnailUrl = thumbnail
+    if (thumbnail.startsWith('data:image/')) {
+        const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
+        const imagePath = `assets/${Date.now()}-${title.split().join('-')}.png`
+        // Storing locally
+        try {
+            fs.writeFileSync(imagePath, buffer)
+            // console.log('Image uploaded successfully.');
+        } catch (error) {
+            return next(error)
+        }
+        thumbnailUrl = `${BASE_URL}/${imagePath}`
+    } 
+
+
 
     // update to database
     try {
-        await Blog.updateOne({_id:blogId},{
-            title, thumbnail, content, tag,readTime
+        await Blog.updateOne({ _id: blogId }, {
+            title, thumbnail: thumbnailUrl, content, tag, readTime
         })
     } catch (error) {
         return next(error)
@@ -98,7 +123,7 @@ const getAllBlogs = async (req, res, next) => {
         blog.forEach(item => {
             let newblog = new blogDto(item)
             blogs.push(newblog)
-        })  
+        })
 
         res.status(200).json({ msg: 'Get all blogs', blogs })
     } catch (error) {
@@ -117,7 +142,7 @@ const getBlogById = async (req, res, next) => {
 const getBlogByUser = async (req, res, next) => {
     const userId = req.params.id
     try {
-        let query = Blog.find({'user.sub':userId})
+        let query = Blog.find({ 'user.sub': userId })
         query.sort({ 'publishedAt': -1 });
         let blog = await query.exec()
 
@@ -126,9 +151,29 @@ const getBlogByUser = async (req, res, next) => {
         blog.forEach(item => {
             let newblog = new blogDto(item)
             blogs.push(newblog)
-        })  
+        })
 
         res.status(200).json({ msg: 'Get blogs by user', blogs })
+    } catch (error) {
+        return next(error)
+    }
+}
+const getBlogByTag = async (req, res, next) => {
+    const tag = req.params.tag
+    try {
+        let query = Blog.find({})
+        query.sort({ 'publishedAt': -1 });
+        query.where('tag').equals(tag)
+        let blog = await query.exec()
+
+        let blogs = []
+
+        blog.forEach(item => {
+            let newblog = new blogDto(item)
+            blogs.push(newblog)
+        })
+
+        res.status(200).json({ msg: 'Get blogs by Tag', blogs })
     } catch (error) {
         return next(error)
     }
@@ -138,7 +183,7 @@ const deleteBlogById = async (req, res, next) => {
     const blogId = req.params.id
     // todo delete thumbnail from server
     try {
-        await Blog.deleteOne({_id: blogId})
+        await Blog.deleteOne({ _id: blogId })
         res.status(200).json({ msg: 'Blog Deleted Successfully', })
     } catch (error) {
         return next(error)
@@ -149,6 +194,7 @@ module.exports = {
     getAllBlogs,
     getBlogById,
     getBlogByUser,
+    getBlogByTag,
     deleteBlogById,
     editBlogById
 }
