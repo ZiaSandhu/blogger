@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/blogger_logo.png'
+import logo from '../../assets/blogger_logo.png'
 const Footer = () => {
     const currentYear = new Date().getFullYear()
   return (

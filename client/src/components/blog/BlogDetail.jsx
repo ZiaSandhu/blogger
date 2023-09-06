@@ -4,12 +4,13 @@ import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from "@heroicons/react/24/outline";
-import Comment from "./Comment";
-import HTMLReactParser from "html-react-parser";
-// import comments from "./comment.json";
-import { getBlogByIdApiCall } from "../api";
 import { useParams } from "react-router-dom";
-import Loader from "./Loader";
+import HTMLReactParser from "html-react-parser";
+
+
+import { getBlogByIdApiCall } from "../../api";
+
+import {Loader, Comment} from "../";
 
 const BlogDetail = () => {
   const [data, setData] = useState();

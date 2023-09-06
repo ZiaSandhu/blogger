@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { LogoutButton, TestButton } from "./Auth";
-import {  BellIcon } from "@heroicons/react/24/outline";
+import { LogoutButton } from "../utils/Auth";
+// import {  BellIcon } from "@heroicons/react/24/outline";
 import {NavLink} from 'react-router-dom'
+
 const User = () => {
 const [showUserMenu, setShowUserMenu] = useState(false)
 const {user, isAuthenticated} = useAuth0()

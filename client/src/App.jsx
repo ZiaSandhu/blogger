@@ -1,18 +1,9 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from './pages/Home'
-import Navbar from './components/Navbar';
-import BlogDetail from './components/BlogDetail'
-import CreateBlog from './components/CreateBlog';
-import Footer from './components/Footer';
-import UserBlog from './pages/UserBlog';
-import TagBlogs from './pages/TagBlogs';
-import MyBlogs from './pages/MyBlogs';
-import ErrorPage from './components/ErrorPage';
-import GoToTopButton from './components/GoToTopButton';
-import GoToBottom from './components/GoToBottom';
-import UserProfile from './components/UserProfile';
+
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-import EditBlog from './components/EditBlog';
+
+import {Home, UserBlog, TagBlogs, MyBlogs} from './pages'
+import { Navbar, BlogDetail, CreateBlog, Footer, ErrorPage, GoToTopButton, GoToBottom, UserProfile, EditBlog } from './components'
 
 function App() {
 

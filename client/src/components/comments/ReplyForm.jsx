@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
+
 import { FaceSmileIcon } from '@heroicons/react/24/outline';
+
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { addReplyApiCall } from '../api';
+import { addReplyApiCall } from '../../api';
 
 const ReplyForm = ({mainComment, parentComment,fetchData}) => {
   const [content, setComment] = useState("");

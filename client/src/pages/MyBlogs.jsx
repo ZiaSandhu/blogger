@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import UserProfileCard from "../components/UserCard";
-import Blog from "../components/Blog";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBlogByUserApiCall, deleteBlogApiCall } from "../api/index";
-import NoRecord from "../components/NoRecord";
 import { PencilIcon,TrashIcon } from "@heroicons/react/20/solid";
-import { useNavigate, NavLink } from "react-router-dom";
-import Loader from "../components/Loader";
-import DeleteModal from "../components/DeleteModel";
+import { useNavigate } from "react-router-dom";
+
+
+import {UserCard, Blog, NoRecord, Loader, DeleteModal} from "../components"
+
+
 const UserBlog = () => {
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ const UserBlog = () => {
     <>
       {isAuthenticated && (
         <>
-          <UserProfileCard userData={user} postCount={data.length} />
+          <UserCard userData={user} postCount={data.length} />
           <div className="mx-auto relative max-w-5xl mt-16 px-2 sm:px-6 lg:px-8">
             {data?.length > 0 ? (
               data.map((blog, index) => (

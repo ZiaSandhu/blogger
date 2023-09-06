@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+
 const ErrorPage = () => {
   return (
     <main className="grid min-h-[70vh] place-items-center px-6 py-24 sm:py-32 lg:px-8">

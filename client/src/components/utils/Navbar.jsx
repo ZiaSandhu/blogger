@@ -1,18 +1,21 @@
-import { Fragment, useState } from "react";
 import { Disclosure, } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../assets/blogger_logo.png";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
-import { LoginButton, TestButton } from "./Auth";
-import User from "./UserMenu";
+import { LoginButton } from "./Auth";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import logo from "../../assets/blogger_logo.png";
+
+import { UserMenu } from '../'
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
 
-  const {user,isAuthenticated} = useAuth0()
+  const {isAuthenticated} = useAuth0()
 
   const userNavigation = [
     { name: "Blogs", to: "/", current: true },
@@ -73,7 +76,7 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <User />
+                <UserMenu />
                 <LoginButton />
               </div>
             </div>

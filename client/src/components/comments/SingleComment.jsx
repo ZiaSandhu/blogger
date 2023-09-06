@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+
 import ReplyForm from "./ReplyForm";
+
+
 const SingleComment = ({comment, mainComment,fetchData}) => {
   const [showReplies, setShowReplies] = useState(false);
   const [isExpand, setIsExpand] = useState(false);

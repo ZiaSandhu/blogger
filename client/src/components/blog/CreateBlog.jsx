@@ -1,4 +1,4 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import JoditEditor from "jodit-react";
 import { useForm } from "react-hook-form";
@@ -6,7 +6,8 @@ import { useState, useRef, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useAuth0 } from "@auth0/auth0-react";
 import {useNavigate} from 'react-router-dom'
-import { createBlogApiCall } from "../api/index";
+
+import { createBlogApiCall } from "../../api";
 
 export default function CreateBlog() {
   const editor = useRef(null);

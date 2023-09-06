@@ -1,4 +1,3 @@
-// GoToTopButton.js
 import React, { useState, useEffect } from 'react';
 import { FaArrowDown } from 'react-icons/fa'; // You can use an arrow-up icon from a library like react-icons
 

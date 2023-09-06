@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import UserProfileCard from "../components/UserCard";
-import Blog from "../components/Blog";
 import { useParams } from "react-router-dom";
+
 import {getBlogByTagApiCall} from '../api/index'
-import NoRecord from "../components/NoRecord";
-import Loader from "../components/Loader";
-import TagCard from '../components/TagCard'
+
+import {Blog, NoRecord, Loader, TagCard} from '../components'
 
 const UserBlog = () => {
   const [data, setData] = useState([]);

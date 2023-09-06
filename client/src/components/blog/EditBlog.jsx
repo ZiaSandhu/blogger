@@ -6,7 +6,7 @@ import { useState, useRef, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useAuth0 } from "@auth0/auth0-react";
 import {useNavigate, useLocation} from 'react-router-dom'
-import { editBlogApiCall } from "../api";
+import { editBlogApiCall } from "../../api";
 
 export default function EditBlog() {
   const editor = useRef(null);

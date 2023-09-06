@@ -1,6 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
-// import { getAllUsers } from "../api/auth0";
 
 const UserProfile = () => {
   const { user, isAuthenticated } = useAuth0();

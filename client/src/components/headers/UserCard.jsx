@@ -1,11 +1,6 @@
 import React from 'react';
-// import { useAuth0 } from "@auth0/auth0-react";
 
-
-
-
-
-function UserProfileCard({userData, postCount}) {
+function UserCard({userData, postCount}) {
 
   return (
     <div className="w-full bg-gray-300 shadow">
@@ -27,4 +22,4 @@ function UserProfileCard({userData, postCount}) {
   );
 }
 
-export default UserProfileCard;
+export default UserCard;

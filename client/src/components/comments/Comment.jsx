@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import SingleComment from './SingleComment';
 import CommentForm from './CommentForm';
-import {  getCommentsApiCall } from "../api";
+
+import {  getCommentsApiCall } from "../../api";
 
 const Comment = ({blogId}) => {
   const [data,setComment] = useState([])

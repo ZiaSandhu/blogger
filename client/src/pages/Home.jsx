@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Blog from "../components/Blog";
 import { getAllBlogsApiCall } from "../api";
-import NoRecord from "../components/NoRecord";
-import Loader from "../components/Loader";
+
+import { Loader, NoRecord, Blog } from '../components'
+
 const Home = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
