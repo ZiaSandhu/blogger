@@ -1,4 +1,5 @@
 const router = require('express').Router()
+
 const { createBlog,
     getAllBlogs,
     getBlogById,
@@ -6,12 +7,17 @@ const { createBlog,
     deleteBlogById,
     editBlogById,
     getBlogByTag } = require('../controllers/blogController')
+
 const { addComment, addReply, getCommentsByBlogId } = require('../controllers/commentController')
+
+const {getAllCategories} = require('../controllers/categoryController')
+
 const auth = require('../middleware/auth')
 
 router.get('/', (req, res) => {
     res.json({ msg: 'Local host 5000' })
 })
+
 router.post('/blog', auth, createBlog)
 router.get('/blogs', getAllBlogs)
 router.get('/blog/:_id', getBlogById)
@@ -24,5 +30,6 @@ router.post('/addComment', auth, addComment)
 router.post('/addReply', auth, addReply)
 router.get('/getCommentsByBlog/:id', getCommentsByBlogId)
 
+router.get('/getAllCategories', getAllCategories)
 
 module.exports = router

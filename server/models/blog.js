@@ -17,21 +17,25 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
+  subCategory: {
+    type: String,
+    required: true,
+  },
   tag: {
     type: String,
   },
-  publishedAt: {
-    type: Date,
-    default: Date.now,
-  },
   thumbnail: {
-    type: String, // You could store the image URL or path here
+    type: String, 
   },
   isPublished:{
     type: Boolean,
     default: true
   }
-},{timeStamps: true});
+},{timestamps: true});
 
 const Blog = mongoose.model('Blog', blogSchema);
 

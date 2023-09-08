@@ -3,8 +3,8 @@ const fs = require('fs') // built in file system module
 const Blog = require('../models/blog');
 const { BASE_URL } = require('../config/index');
 const blogDto = require('../dto/blogDto')
+const myBlogDto = require('../dto/myBlogDto')
 const blogDetailDto = require('../dto/blogDetailDto');
-const { userInfo } = require('os');
 const regex = /^data:image\/[^;]+/;
 
 
@@ -22,7 +22,6 @@ function getImageType(imageString) {
 
 
 const createBlog = async (req, res, next) => {
-    console.log('blog created controller')
     //  validate request body
     // client -> base64 encoded photo -> decode -> store -> save photopath db
     const createBlogSchema = Joi.object({
@@ -32,6 +31,9 @@ const createBlog = async (req, res, next) => {
         thumbnail: Joi.string().required(),
         readTime: Joi.string().required(),
         tag: Joi.string().required(),
+        category: Joi.string().required(),
+        subCategory: Joi.string().required(),
+        
     });
     const { error } = createBlogSchema.validate(req.body)
 
@@ -39,7 +41,7 @@ const createBlog = async (req, res, next) => {
         return next(error)
     }
 
-    const { title, user, content, thumbnail, readTime, tag } = req.body
+    const { title, user, content, thumbnail, readTime, tag, category, subCategory } = req.body
 
     //upload photo
     const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
@@ -60,6 +62,8 @@ const createBlog = async (req, res, next) => {
             content,
             thumbnail: `${BASE_URL}/${imagePath}`,
             readTime,
+            category, 
+            subCategory,
             tag
         });
         blog = await newBlog.save()
@@ -68,6 +72,7 @@ const createBlog = async (req, res, next) => {
     }
     res.status(201).json({ msg: 'Blog created Successfully', blog })
 }
+
 const editBlogById = async (req, res, next) => {
     const createBlogSchema = Joi.object({
         title: Joi.string().required(),
@@ -111,11 +116,10 @@ const editBlogById = async (req, res, next) => {
     res.status(201).json({ msg: 'Blog updated Successfully' })
 }
 
-
 const getAllBlogs = async (req, res, next) => {
     try {
         let query = Blog.find({})
-        query.sort({ 'publishedAt': -1 });
+        query.sort({ 'updatedAt': -1 });
         let blog = await query.exec()
 
         let blogs = []
@@ -143,13 +147,13 @@ const getBlogByUser = async (req, res, next) => {
     const userId = req.params.id
     try {
         let query = Blog.find({ 'user.sub': userId })
-        query.sort({ 'publishedAt': -1 });
+        query.sort({ 'updatedAt': -1 });
         let blog = await query.exec()
 
         let blogs = []
 
         blog.forEach(item => {
-            let newblog = new blogDto(item)
+            let newblog = new myBlogDto(item)
             blogs.push(newblog)
         })
 
@@ -162,7 +166,7 @@ const getBlogByTag = async (req, res, next) => {
     const tag = req.params.tag
     try {
         let query = Blog.find({})
-        query.sort({ 'publishedAt': -1 });
+        query.sort({ 'updatedAt': -1 });
         query.where('tag').equals(tag)
         let blog = await query.exec()
 
@@ -182,6 +186,7 @@ const deleteBlogById = async (req, res, next) => {
     console.log("blog delete controller")
     const blogId = req.params.id
     // todo delete thumbnail from server
+    // todo delete comment of relevent blog
     try {
         await Blog.deleteOne({ _id: blogId })
         res.status(200).json({ msg: 'Blog Deleted Successfully', })

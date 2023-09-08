@@ -33,9 +33,9 @@ const Home = () => {
     <div className="mx-auto max-w-5xl mt-10 px-2 sm:px-6 lg:px-8">
       {loading && <Loader />}
       {!loading &&
-        data &&
+        data.length > 0 &&
         data.map((blog, index) => <Blog blog={blog} key={index} />)}
-      {!loading && !data && <NoRecord />}
+      {!loading && data.length <= 0 && <NoRecord />}
     </div>
   );
 };

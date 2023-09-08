@@ -106,6 +106,7 @@ export const getBlogByTagApiCall = async(tag) => {
     }
     return response
 } 
+// comments
 export const addCommentApiCall = async(data,token) => {
     let response
     try {
@@ -141,6 +142,17 @@ export const getCommentsApiCall = async(id) => {
     }
     return response
 } 
+
+// categories
+export const getCategoriesApiCall = async()=>{
+    let response
+    try {
+        response = await apiCall.get(`/getAllCategories`);
+    } catch (error) {
+        response = error.response
+    }
+    return response
+}
 
 // axios.defaults.baseURL = 'http://localhost:5000';
 

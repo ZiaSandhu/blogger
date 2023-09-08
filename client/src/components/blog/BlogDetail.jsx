@@ -53,8 +53,11 @@ const BlogDetail = () => {
           <div className="h-auto p-6 ">
             <h1 className="text-4xl font-bold"> {data.title} </h1>
             <p className="text-gray-400 my-7">
-              Published on {data.publishedAt.split("T")[0]}
+              Published on {data.createdAt.split('T')[0]}
             </p>
+            {data.updatedAt !== data.createdAt && <p className="text-gray-400 my-7">
+              Published on {data.updatedAt.split('T')[0]}
+            </p>}
             <NavLink
               to={`/blogs/tag/${data.tag}`}
               className="text-lg text-gray-700 bg-gray-300 py-1 px-2 inline rounded-lg hover:underline"

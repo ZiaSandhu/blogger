@@ -143,10 +143,6 @@ export default function EditBlog() {
                   id="tag"
                   {...register("tag", {
                     required: "Tag is missing",
-                    minLength: {
-                      value: 4,
-                      message: "Tag must be at least 4 characters long",
-                    },
                     validate: {
                       noEmptySpace: (value) =>
                         value.trim() !== "" || "Tag cannot be empty spaces",
@@ -172,6 +168,7 @@ export default function EditBlog() {
                     required: "Readtime is missing",
                     min: {
                       value: 1,
+                      message: 'read Time can not less than 1'
                     },
                   })}
                   type="number"

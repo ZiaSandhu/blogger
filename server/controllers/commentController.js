@@ -1,5 +1,4 @@
 const Joi = require('joi')
-const fs = require('fs') // built in file system module
 const Comment = require('../models/comment');
 
 const IdPattern = /^[a-fA-F0-9]{24}$/

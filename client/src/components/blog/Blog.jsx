@@ -56,7 +56,7 @@ const Blog = ({blog={}}) => {
               {blog.user.nickname}
             </NavLink>
           </div>
-          <p className="text-gray-400">{blog.publishedAt.split("T")[0]} </p>
+          <p className="text-gray-400">{blog.createdAt.split('T')[0]} </p>
         </div>
       </div>
     </div>
