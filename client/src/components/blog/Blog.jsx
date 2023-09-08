@@ -53,7 +53,7 @@ const Blog = ({blog={}}) => {
               to={`/blogs/user/${blog.user.sub}`}
               className="text-gray-600"
             >
-              {blog.user.nickname}
+              {blog.user.name}
             </NavLink>
           </div>
           <p className="text-gray-400">{blog.createdAt.split('T')[0]} </p>

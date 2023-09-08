@@ -75,7 +75,7 @@ const BlogDetail = () => {
                   />
                 </NavLink>
                 <NavLink to="/blog/user/1" className="text-gray-600">
-                  {data.user.nickname}
+                  {data.user.name}
                 </NavLink>
               </div>
               <p className="text-gray-400">{data.readTime} min read</p>

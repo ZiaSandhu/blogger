@@ -8,6 +8,8 @@ class blogDto {
         this.title = blog.title
         this.readTime = blog.readTime
         this.tag = blog.tag
+        this.category = blog.category
+        this.subCategory = blog.subCategory
         // this.content = blog.content
     }
 }

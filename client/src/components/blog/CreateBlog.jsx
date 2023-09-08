@@ -51,10 +51,14 @@ export default function CreateBlog() {
       setError("Post or thumbnail is missing");
       return;
     }
-    
+    let dtoUser = {
+      name: user.name,
+      picture: user.picture,
+      sub: user.sub
+    }
     const post = {
       ...data,
-      user,
+      user:dtoUser,
       thumbnail,
       content,
     };
@@ -76,7 +80,7 @@ export default function CreateBlog() {
         navigate(`/blog/${response.data.blog._id}`)
       }else{
         loading(false)
-    
+        setError("Something went wrong! Try again.")
         console.log("🚀 ~ file: CreateBlog.jsx:77 ~ submit else part ~ response:", response)
 
       }

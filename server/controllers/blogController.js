@@ -7,7 +7,7 @@ const myBlogDto = require('../dto/myBlogDto')
 const blogDetailDto = require('../dto/blogDetailDto');
 const regex = /^data:image\/[^;]+/;
 
-
+const {getAccessToken, getUserDetailById} = require('../api/getUserDetail')
 
 
 function getImageType(imageString) {
@@ -26,7 +26,7 @@ const createBlog = async (req, res, next) => {
     // client -> base64 encoded photo -> decode -> store -> save photopath db
     const createBlogSchema = Joi.object({
         title: Joi.string().required(),
-        user: Joi.object().required(),
+        userId: Joi.object().required(),
         content: Joi.string().required(),
         thumbnail: Joi.string().required(),
         readTime: Joi.string().required(),
@@ -122,13 +122,27 @@ const getAllBlogs = async (req, res, next) => {
         query.sort({ 'updatedAt': -1 });
         let blog = await query.exec()
 
+        let token = await getAccessToken()
+
         let blogs = []
 
-        blog.forEach(item => {
-            let newblog = new blogDto(item)
-            blogs.push(newblog)
+        blog.forEach((item)=>{
+            blogs.push(new blogDto(item))
         })
 
+        // async function getUserAndApplyDto() {
+        //     for (const item of blog){
+        //         const user = await getUserDetailById(item.userId,token)
+        //         console.log("🚀 ~ file: blogController.js:134 ~ getUserAndApplyDto ~ user:", user)
+        //         let newuser = {...user,sub:item.userId}
+        //         let newBlog = {...item, user:newuser}
+        //         // console.log("🚀 ~ file: blogController.js:135 ~ getUserAndApplyDto ~ newBlog:", newBlog)
+        //         let updatedBlog = new blogDto(newBlog)
+        //         // console.log("🚀 ~ file: blogController.js:135 ~ getUserAndApplyDto ~ updatedBlog:", updatedBlog)
+        //         blogs.push(updatedBlog)
+        //     }
+        // }
+        // await getUserAndApplyDto()
         res.status(200).json({ msg: 'Get all blogs', blogs })
     } catch (error) {
         return next(error)
@@ -153,7 +167,7 @@ const getBlogByUser = async (req, res, next) => {
         let blogs = []
 
         blog.forEach(item => {
-            let newblog = new myBlogDto(item)
+            let newblog = new blogDto(item)
             blogs.push(newblog)
         })
 
