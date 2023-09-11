@@ -11,25 +11,25 @@ const UserBlog = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  // const [categories, setCategories] = useState([]);
+  // const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [filterData, setFilterData] = useState([]);
 
   let userId = useParams().id;
 
-  useEffect(() => {
-    if (selectedCategory !== "All Categories") {
-      let filterBlog = data.filter((blog) => {
-        return (
-          blog.category === selectedCategory ||
-          blog.subCategory === selectedCategory
-        );
-      });
-      setFilterData(filterBlog);
-    } else {
-      setFilterData(data);
-    }
-  }, [selectedCategory]);
+  // useEffect(() => {
+  //   if (selectedCategory !== "All Categories") {
+  //     let filterBlog = data.filter((blog) => {
+  //       return (
+  //         blog.category === selectedCategory ||
+  //         blog.subCategory === selectedCategory
+  //       );
+  //     });
+  //     setFilterData(filterBlog);
+  //   } else {
+  //     setFilterData(data);
+  //   }
+  // }, [selectedCategory]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,13 +67,13 @@ const UserBlog = () => {
         {loading && <Loader />}
         {!loading && data.length > 0 && (
           <div className="relative">
-            <div className="flex flex-row-reverse">
+            {/* <div className="flex flex-row-reverse">
               <FilterButton
                 categories={categories}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
               />
-            </div>
+            </div> */}
             {filterData.map((blog, index) => (
               <Blog blog={blog} key={index} />
             ))}

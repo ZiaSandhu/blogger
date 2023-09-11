@@ -100,10 +100,10 @@ useEffect(() => {
               />
               </div>
               <div className="flex items-baseline justify-between border-b border-gray-200 pt-10">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+                {/* <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                 Blogs
-                </h1>
-
+                </h1> */}
+                  <hr />
                 <button
                   type="button"
                   className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"

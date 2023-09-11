@@ -76,12 +76,12 @@ const UserBlog = () => {
                 <div key={index} className=" mt-16 relative">
                   <Blog blog={blog} key={index} />
                   <div className="absolute flex mt-2 right-0 mr-0">
-                    <button
+                    {/* <button
                       onClick={() => handleEdit(blog)}
                       className="px-3 py-1 flex gap-2 items-center justify-between bg-blue-500 hover:bg-blue-600 text-white rounded-md mr-2"
                     >
                       <PencilIcon className="h-4 w-4" /> Edit
-                    </button>
+                    </button> */}
                     <button
                       onClick={() => {
                         setBlogId(blog._id),

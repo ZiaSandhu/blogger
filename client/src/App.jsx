@@ -35,7 +35,7 @@ function App() {
             <Route path="/blogs/tag/:tag" element={<TagBlogs />} />
             <Route path="/myblogs" element={<ProtectedMyBlog />} />
             <Route path="/writeblog" element={<ProtectCreateBlog />} />
-            <Route path="/editblog" element={<ProtectEditBlog />} />
+            {/* <Route path="/editblog" element={<ProtectEditBlog />} /> */}
             <Route path="/inbox" element={<ProtectedInbox />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>

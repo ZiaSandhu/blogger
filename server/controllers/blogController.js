@@ -46,7 +46,7 @@ const createBlog = async (req, res, next) => {
 
     //upload photo
     const buffer = Buffer.from(thumbnail.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), 'base64');
-    const imagePath = `assets/${Date.now()}-${title.split().join('-')}.png`
+    const imagePath = `assets/${Date.now()}-${title.split(' ').join('-')}.png`
     // storing locally
     try {
         fs.writeFileSync(imagePath, buffer)
