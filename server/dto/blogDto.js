@@ -10,7 +10,7 @@ class blogDto {
         this.tag = blog.tag
         this.category = blog.category
         this.subCategory = blog.subCategory
-        // this.content = blog.content
+        this.content = blog.content
     }
 }
 module.exports = blogDto

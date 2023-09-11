@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import {getBlogByUserApiCall, getCategoriesApiCall} from '../api/index'
 
-import {Blog, NoRecord, Loader, UserCard} from '../components'
-import {FilterButton} from "../components";
+import {Blog, NoRecord, Loader, UserCard, FilterButton} from '../components'
+// import {FilterButton} from "../components";
 
 
 const UserBlog = () => {

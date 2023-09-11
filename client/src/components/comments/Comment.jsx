@@ -12,6 +12,7 @@ const Comment = ({blogId}) => {
       const comments = await getCommentsApiCall(blogId)
       setComment(comments.data.comments)
     } catch (error) {
+      console.log(error)
     }
   };
   useEffect(()=>{

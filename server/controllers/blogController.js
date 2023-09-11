@@ -1,9 +1,10 @@
 const Joi = require('joi')
 const fs = require('fs') // built in file system module
 const Blog = require('../models/blog');
+const Comment = require('../models/comment');
 const { BASE_URL } = require('../config/index');
 const blogDto = require('../dto/blogDto')
-const myBlogDto = require('../dto/myBlogDto')
+// const myBlogDto = require('../dto/myBlogDto')
 const blogDetailDto = require('../dto/blogDetailDto');
 const regex = /^data:image\/[^;]+/;
 
@@ -26,7 +27,7 @@ const createBlog = async (req, res, next) => {
     // client -> base64 encoded photo -> decode -> store -> save photopath db
     const createBlogSchema = Joi.object({
         title: Joi.string().required(),
-        userId: Joi.object().required(),
+        user: Joi.object().required(),
         content: Joi.string().required(),
         thumbnail: Joi.string().required(),
         readTime: Joi.string().required(),
@@ -122,7 +123,7 @@ const getAllBlogs = async (req, res, next) => {
         query.sort({ 'updatedAt': -1 });
         let blog = await query.exec()
 
-        let token = await getAccessToken()
+        // let token = await getAccessToken()
 
         let blogs = []
 
@@ -202,6 +203,7 @@ const deleteBlogById = async (req, res, next) => {
     // todo delete thumbnail from server
     // todo delete comment of relevent blog
     try {
+        await Comment.deleteMany({blogId}) 
         await Blog.deleteOne({ _id: blogId })
         res.status(200).json({ msg: 'Blog Deleted Successfully', })
     } catch (error) {

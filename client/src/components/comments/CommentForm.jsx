@@ -31,9 +31,13 @@ const CommentForm = ({blogId,fetchData}) => {
     // Reset the form
     // setLoading(true)
     try {
-
+      let userDto = {
+        name: user.name,
+        picture: user.picture,
+        sub: user.sub
+      }
       let token = await getAccessTokenSilently();
-      await addCommentApiCall({ user, content, blogId }, token);
+      await addCommentApiCall({ user:userDto, content, blogId }, token);
       await fetchData();
       // setLoading(false)
     } catch (error) {

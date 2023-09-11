@@ -124,15 +124,15 @@
   ]
   // You can insert these blog objects into your MongoDB database as needed.
   const moreBlogs = [
-    {
-      title: "The Future of Mobile Technology",
-      tag: "Tech",
-      readTime: 8,
-      category: "Technology",
-      subCategory: "Mobile",
-      content: "Explore the exciting developments in mobile technology and what the future holds for smartphones.",
-      thumbnailURL: "https://example.com/mobile-tech-thumbnail.jpg",
-    },
+    // {
+    //   title: "The Future of Mobile Technology",
+    //   tag: "Tech",
+    //   readTime: 8,
+    //   category: "Technology",
+    //   subCategory: "Mobile",
+    //   content: "Explore the exciting developments in mobile technology and what the future holds for smartphones.",
+    //   thumbnailURL: "https://example.com/mobile-tech-thumbnail.jpg",
+    // },
     {
       title: "Cultural Exploration",
       tag: "Travel",
@@ -140,7 +140,7 @@
       category: "Travel",
       subCategory: "Cultural",
       content: "Immerse yourself in the rich cultures and traditions of different countries around the world.",
-      thumbnailURL: "https://example.com/cultural-travel-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm-62zY_VlDVjtGPXO5Et0nxfDuJKQHwPANw&usqp=CAU",
     },
     {
       title: "Mastering the Art of Cooking",
@@ -149,7 +149,7 @@
       category: "Food",
       subCategory: "Cooking Tips",
       content: "Learn cooking techniques from the pros and elevate your culinary skills in the kitchen.",
-      thumbnailURL: "https://example.com/cooking-tips-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHOGfNh9o4Fv7qeT6RyKEM5U9yzRWJJZCGlQ&usqp=CAU",
     },
     {
       title: "Achieving Wellness in Everyday Life",
@@ -158,7 +158,7 @@
       category: "Health",
       subCategory: "Wellness",
       content: "Discover holistic approaches to wellness and maintain a healthy lifestyle with ease.",
-      thumbnailURL: "https://example.com/wellness-thumbnail.jpg",
+      thumbnailURL: "https://shcs.ucdavis.edu/sites/g/files/dgvnsk7846/files/inline-images/Wheel_0.png",
     },
     {
       title: "Beauty Trends and Tips",
@@ -167,7 +167,7 @@
       category: "Fashion",
       subCategory: "Beauty",
       content: "Stay up-to-date with the latest beauty trends, makeup tips, and skincare routines.",
-      thumbnailURL: "https://example.com/beauty-trends-thumbnail.jpg",
+      thumbnailURL: "https://c.ndtvimg.com/2021-12/3se0h058_fermented_625x300_30_December_21.jpg",
     },
     {
       title: "Creating a Cozy Home",
@@ -176,7 +176,7 @@
       category: "Lifestyle",
       subCategory: "Home Decor",
       content: "Transform your living space into a cozy and inviting home with these decor ideas.",
-      thumbnailURL: "https://example.com/cozy-home-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5AgwAdwnMCNaIu3ak2EE5HASOZTEJDhE5HQ&usqp=CAU",
     },
     {
       title: "Innovations in Hardware Technology",
@@ -185,7 +185,7 @@
       category: "Technology",
       subCategory: "Hardware",
       content: "Stay informed about the latest advancements in hardware technology and computer components.",
-      thumbnailURL: "https://example.com/hardware-tech-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREmXQEcEQTRspM3rJikO6H7psc2GdrSY4wc7gi3SNQDZI3zrbMlEVJYpRMUNDCOu8_-9Y&usqp=CAU",
     },
     {
       title: "Parenting Tips and Advice",
@@ -194,7 +194,7 @@
       category: "Lifestyle",
       subCategory: "Parenting",
       content: "Navigating the joys and challenges of parenthood with expert parenting tips and advice.",
-      thumbnailURL: "https://example.com/parenting-tips-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX-ke2HPg_ijaqX0ci_AlFZXgUKiVlBByJOg&usqp=CAU",
     },
     {
       title: "Exploring Internet Trends",
@@ -203,7 +203,7 @@
       category: "Technology",
       subCategory: "Internet",
       content: "Dive into the latest internet trends and innovations shaping the digital landscape.",
-      thumbnailURL: "https://example.com/internet-trends-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDEcJixu1VVwtHErdohK53ESQaLBezx5xLg&usqp=CAU",
     },
     {
       title: "Adventure Stories",
@@ -212,7 +212,7 @@
       category: "Travel",
       subCategory: "Adventure",
       content: "Embark on thrilling journeys through adventure stories that will inspire your next trip.",
-      thumbnailURL: "https://example.com/adventure-stories-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hvGZctfKoxj5-usOa9B4yyvy5ogWXo9wNQ&usqp=CAU",
     },
     {
       title: "Delightful Recipes to Try",
@@ -221,7 +221,7 @@
       category: "Food",
       subCategory: "Recipes",
       content: "Explore a collection of delightful recipes from around the world and satisfy your taste buds.",
-      thumbnailURL: "https://example.com/recipes-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ55w7CWW8s1ukX7Khe7VVX7gzyd2Y6CDQhw&usqp=CAU",
     },
     {
       title: "Achieving Mental Clarity",
@@ -230,7 +230,7 @@
       category: "Health",
       subCategory: "Mental Health",
       content: "Learn mindfulness techniques and strategies for achieving mental clarity and well-being.",
-      thumbnailURL: "https://example.com/mental-clarity-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEDLzrHxjJ4I4UQiYbe7WP1sJ2XsmgXKKzdw&usqp=CAU",
     },
     {
       title: "Fashion Forward: Clothing Trends",
@@ -239,7 +239,7 @@
       category: "Fashion",
       subCategory: "Clothing",
       content: "Stay stylish with the latest clothing trends and wardrobe essentials for every season.",
-      thumbnailURL: "https://example.com/clothing-trends-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqH6ywe9I2c7kHRtAjhyq3BfvhsPdQzFOShg&usqp=CAU",
     },
     {
       title: "Accessorizing with Flair",
@@ -248,7 +248,7 @@
       category: "Fashion",
       subCategory: "Accessories",
       content: "Elevate your fashion game with tips on accessorizing and choosing the perfect accessories.",
-      thumbnailURL: "https://example.com/accessorizing-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpqf8F3uhROVJuXLAAjg6Eh4LBFZHQHE_Vow&usqp=CAU",
     },
     {
       title: "Self-Improvement Journey",
@@ -257,7 +257,7 @@
       category: "Lifestyle",
       subCategory: "Self Improvement",
       content: "Embark on a self-improvement journey with actionable advice and personal development tips.",
-      thumbnailURL: "https://example.com/self-improvement-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXUEkqAyhDJhZyLuO1M-B2BtWo5ow-_iV7w&usqp=CAU",
     },
     {
       title: "Sustainable Living Tips",
@@ -266,7 +266,7 @@
       category: "Lifestyle",
       subCategory: "Self Improvement",
       content: "Discover sustainable living practices and make eco-friendly choices for a better planet.",
-      thumbnailURL: "https://example.com/sustainable-living-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVufJSrArPQTrmU608xkTaEEJ7dFolz_Wd-w&usqp=CAU",
     },
     {
       title: "Top Software Picks",
@@ -275,7 +275,7 @@
       category: "Technology",
       subCategory: "Software",
       content: "Find the best software applications for various tasks and boost your productivity.",
-      thumbnailURL: "https://example.com/software-picks-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxPsaucUUvFq_aj-iMfsnz7mqRIHfvZkR0cw&usqp=CAU",
     },
     {
       title: "Tasty Dishes from Around the World",
@@ -284,7 +284,7 @@
       category: "Food",
       subCategory: "Recipes",
       content: "Explore international cuisines and savor delicious dishes from different cultures.",
-      thumbnailURL: "https://example.com/world-cuisine-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTe2tp7NQGjE1QP50MkJy2gZbsD1asPuR31g&usqp=CAU",
     },
     {
       title: "Dietary Choices for Health",
@@ -293,7 +293,7 @@
       category: "Health",
       subCategory: "Diet",
       content: "Make informed dietary choices to improve your health and well-being.",
-      thumbnailURL: "https://example.com/dietary-choices-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZarkdnfT-oVZnEQ3K1zdOFe1gdJQcsJnt8Q&usqp=CAU",
     },
     {
       title: "Relationships and Communication",
@@ -302,7 +302,7 @@
       category: "Lifestyle",
       subCategory: "Relationships",
       content: "Enhance your relationships through effective communication and understanding.",
-      thumbnailURL: "https://example.com/relationships-thumbnail.jpg",
+      thumbnailURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUzqAcB1ppNCXLZ500oAsk3hPFd-7YxakUAw&usqp=CAU",
     },
   ];
   function getRandomInt(min, max) {

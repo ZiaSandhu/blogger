@@ -6,6 +6,7 @@ import ReplyForm from "./ReplyForm";
 
 
 const SingleComment = ({comment, mainComment,fetchData}) => {
+  console.log("🚀 ~ file: SingleComment.jsx:9 ~ SingleComment ~ comment:", comment)
   const [showReplies, setShowReplies] = useState(false);
   const [isExpand, setIsExpand] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false)
@@ -27,7 +28,7 @@ let trimContent
       <div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <p className="text-indigo-600"> {comment.user.nickname} </p>
+            <p className="text-indigo-600"> {comment.user.name} </p>
             <p className="text-gray-400 ml-2"> {comment.createdAt.split('T')[0]} </p>
           </div>
           <button className="h-4 w-4" onClick={toggleReplies}>

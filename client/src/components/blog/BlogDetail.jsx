@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
+  ChatBubbleLeftIcon
 } from "@heroicons/react/24/outline";
 import { useParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
@@ -10,7 +11,7 @@ import HTMLReactParser from "html-react-parser";
 
 import { getBlogByIdApiCall } from "../../api";
 
-import {Loader, Comment} from "../";
+import {Loader, Comment, ChatButton} from "../";
 
 const BlogDetail = () => {
   const [data, setData] = useState();
@@ -53,11 +54,13 @@ const BlogDetail = () => {
           <div className="h-auto p-6 ">
             <h1 className="text-4xl font-bold"> {data.title} </h1>
             <p className="text-gray-400 my-7">
-              Published on {data.createdAt.split('T')[0]}
+              Published on {data.createdAt.split("T")[0]}
             </p>
-            {data.updatedAt !== data.createdAt && <p className="text-gray-400 my-7">
-              Published on {data.updatedAt.split('T')[0]}
-            </p>}
+            {data.updatedAt !== data.createdAt && (
+              <p className="text-gray-400 my-7">
+                Published on {data.updatedAt.split("T")[0]}
+              </p>
+            )}
             <NavLink
               to={`/blogs/tag/${data.tag}`}
               className="text-lg text-gray-700 bg-gray-300 py-1 px-2 inline rounded-lg hover:underline"
@@ -65,8 +68,8 @@ const BlogDetail = () => {
               {data.tag}
             </NavLink>
             <div className="flex items-center justify-between my-8">
-              <div className="flex items-center">
-                <NavLink to="/blog/user/1">
+              <div className="flex items-center ">
+                <NavLink to={`/blogs/user/${data.user.sub}`}>
                   <img
                     src={data.user.picture}
                     alt="User Avatar"
@@ -74,9 +77,10 @@ const BlogDetail = () => {
                     loading="lazy"
                   />
                 </NavLink>
-                <NavLink to="/blog/user/1" className="text-gray-600">
+                <NavLink to={`/blogs/user/${data.user.sub}`} className="text-gray-600">
                   {data.user.name}
                 </NavLink>
+              <ChatButton />
               </div>
               <p className="text-gray-400">{data.readTime} min read</p>
             </div>

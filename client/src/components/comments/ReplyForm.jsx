@@ -29,9 +29,14 @@ const ReplyForm = ({mainComment, parentComment,fetchData}) => {
     if (content.trim() === "") return;
     // Reset the form
 
+    let userDto = {
+      name: user.name,
+      picture: user.picture,
+      sub: user.sub
+    }
     let reply = {
       content,
-      user,
+      user:userDto,
       mainComment,
       parentComment
     }

@@ -11,7 +11,7 @@ const Blog = ({blog={}}) => {
           <img
             src={blog.thumbnail}
             alt="Image"
-            className="w-full h-auto rounded"
+            className="w-full aspect-video rounded"
             loading="lazy"
           />
         </NavLink>

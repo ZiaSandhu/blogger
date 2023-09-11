@@ -4,7 +4,6 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 
 export default function FilterButton({ categories, selectedCategory, setSelectedCategory }) {
-  // const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [toggleCategories, settoggleCategories] = useState();
   return (
     <Menu as="div" className="relative inline-block text-left">

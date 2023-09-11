@@ -1,6 +1,7 @@
 import React from 'react';
+import {ChatButton} from '../';
 
-function UserCard({userData, postCount}) {
+const UserCard = ({userData, postCount}) => {
 
   return (
     <div className="w-full bg-gray-300 shadow">
@@ -16,6 +17,7 @@ function UserCard({userData, postCount}) {
           {/* <p className="text-gray-700">{userData.country}</p> */}
           {/* <span className='h-2 w-2 mt-2 bg-gray-600 rounded-full'></span> */}
           <p className="text-gray-700">{postCount} posts</p>
+          <ChatButton />
         </div>
       </div>
     </div>

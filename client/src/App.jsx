@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-import { Home, UserBlog, TagBlogs, MyBlogs } from "./pages";
+import { Home, UserBlog, TagBlogs, MyBlogs, Chat } from "./pages/Index";
 import {
   Navbar,
   BlogDetail,
@@ -20,6 +20,7 @@ function App() {
   const ProtectCreateBlog = withAuthenticationRequired(CreateBlog);
   const ProtectEditBlog = withAuthenticationRequired(EditBlog);
   const ProtectedMyBlog = withAuthenticationRequired(MyBlogs);
+  const ProtectedInbox = withAuthenticationRequired(Chat);
 
   return (
     <div className=" relative box-border min-h-screen bg-gray-100 shadow-inner ">
@@ -35,6 +36,7 @@ function App() {
             <Route path="/myblogs" element={<ProtectedMyBlog />} />
             <Route path="/writeblog" element={<ProtectCreateBlog />} />
             <Route path="/editblog" element={<ProtectEditBlog />} />
+            <Route path="/inbox" element={<ProtectedInbox />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
         </div>

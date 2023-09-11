@@ -23,5 +23,10 @@ export {default as ErrorPage } from './utils/ErrorPage'
 export {default as Footer } from './utils/Footer'
 export {default as Navbar } from './utils/Navbar'
 export {default as NoRecord } from './utils/NoRecord'
-export {default as FilterButton } from './utils/FilterButton'
-export {default as SearchBar } from './utils/SearchBar'
+
+
+export {default as ChatButton } from './Features/ChatButton'
+export {default as FilterButton } from './Features/FilterButton'
+export {default as DesktopFilter } from './Features/DesktopFilter'
+export {default as MobileFilter } from './Features/MobileFilter'
+export {default as SearchBar } from './Features/Search'

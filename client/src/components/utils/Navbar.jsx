@@ -71,7 +71,6 @@ export default function Navbar() {
                         {item.name}
                       </NavLink>
                     ))}
-                    {/* <TestButton /> */}
                   </div>
                 </div>
               </div>
@@ -82,7 +81,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          {/* <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -101,7 +100,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               ))}
             </div>
-          </Disclosure.Panel>
+          </Disclosure.Panel> */}
         </>
       )}
     </Disclosure>

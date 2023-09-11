@@ -86,7 +86,7 @@ export default function CreateBlog() {
       }
     } catch (error) {
       setLoading(false)
-      setError(error.data.message)
+      setError(error.data)
     }
   };
 
